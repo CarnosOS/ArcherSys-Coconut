@@ -1,6 +1,6 @@
 <?php
 
-require_once "Google/Model.php";
+require_once realpath(dirname(__FILE__) . '/../../autoload.php');
 
 /**
  * Extension to the regular GoogleGAL_Model that automatically
@@ -13,7 +13,8 @@ class GoogleGAL_Collection extends GoogleGAL_Model implements Iterator, Countabl
 
   public function rewind()
   {
-    if (isset($this->modelData[$this->collection_key]) && is_array($this->modelData[$this->collection_key])) {
+    if (isset($this->modelData[$this->collection_key])
+        && is_array($this->modelData[$this->collection_key])) {
       reset($this->modelData[$this->collection_key]);
     }
   }
@@ -28,7 +29,8 @@ class GoogleGAL_Collection extends GoogleGAL_Model implements Iterator, Countabl
 
   public function key()
   {
-    if (isset($this->modelData[$this->collection_key]) && is_array($this->modelData[$this->collection_key])) {
+    if (isset($this->modelData[$this->collection_key])
+        && is_array($this->modelData[$this->collection_key])) {
       return key($this->modelData[$this->collection_key]);
     }
   }

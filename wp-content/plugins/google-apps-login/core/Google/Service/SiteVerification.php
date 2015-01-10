@@ -19,8 +19,7 @@
  * Service definition for SiteVerification (v1).
  *
  * <p>
- * Lets you programatically verify ownership of websites or domains with Google.
- * </p>
+ * Lets you programatically verify ownership of websites or domains with Google.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -32,9 +31,11 @@
 class GoogleGAL_Service_SiteVerification extends GoogleGAL_Service
 {
   /** Manage the list of sites and domains you control. */
-  const SITEVERIFICATION = "https://www.googleapis.com/auth/siteverification";
+  const SITEVERIFICATION =
+      "https://www.googleapis.com/auth/siteverification";
   /** Manage your new site verifications with Google. */
-  const SITEVERIFICATION_VERIFY_ONLY = "https://www.googleapis.com/auth/siteverification.verify_only";
+  const SITEVERIFICATION_VERIFY_ONLY =
+      "https://www.googleapis.com/auth/siteverification.verify_only";
 
   public $webResource;
   
@@ -137,8 +138,7 @@ class GoogleGAL_Service_SiteVerification_WebResource_Resource extends GoogleGAL_
   /**
    * Relinquish ownership of a website or domain. (webResource.delete)
    *
-   * @param string $id
-   * The id of a verified site or domain.
+   * @param string $id The id of a verified site or domain.
    * @param array $optParams Optional parameters.
    */
   public function delete($id, $optParams = array())
@@ -147,11 +147,11 @@ class GoogleGAL_Service_SiteVerification_WebResource_Resource extends GoogleGAL_
     $params = array_merge($params, $optParams);
     return $this->call('delete', array($params));
   }
+
   /**
    * Get the most current data for a website or domain. (webResource.get)
    *
-   * @param string $id
-   * The id of a verified site or domain.
+   * @param string $id The id of a verified site or domain.
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceResource
    */
@@ -161,6 +161,7 @@ class GoogleGAL_Service_SiteVerification_WebResource_Resource extends GoogleGAL_
     $params = array_merge($params, $optParams);
     return $this->call('get', array($params), "GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceResource");
   }
+
   /**
    * Get a verification token for placing on a website or domain.
    * (webResource.getToken)
@@ -175,11 +176,12 @@ class GoogleGAL_Service_SiteVerification_WebResource_Resource extends GoogleGAL_
     $params = array_merge($params, $optParams);
     return $this->call('getToken', array($params), "GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceGettokenResponse");
   }
+
   /**
    * Attempt verification of a website or domain. (webResource.insert)
    *
-   * @param string $verificationMethod
-   * The method to use for verifying a site or domain.
+   * @param string $verificationMethod The method to use for verifying a site or
+   * domain.
    * @param GoogleGAL_SiteVerificationWebResourceResource $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceResource
@@ -190,6 +192,7 @@ class GoogleGAL_Service_SiteVerification_WebResource_Resource extends GoogleGAL_
     $params = array_merge($params, $optParams);
     return $this->call('insert', array($params), "GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceResource");
   }
+
   /**
    * Get the list of your verified websites and domains.
    * (webResource.listWebResource)
@@ -203,12 +206,12 @@ class GoogleGAL_Service_SiteVerification_WebResource_Resource extends GoogleGAL_
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceListResponse");
   }
+
   /**
    * Modify the list of owners for your website or domain. This method supports
    * patch semantics. (webResource.patch)
    *
-   * @param string $id
-   * The id of a verified site or domain.
+   * @param string $id The id of a verified site or domain.
    * @param GoogleGAL_SiteVerificationWebResourceResource $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceResource
@@ -219,11 +222,11 @@ class GoogleGAL_Service_SiteVerification_WebResource_Resource extends GoogleGAL_
     $params = array_merge($params, $optParams);
     return $this->call('patch', array($params), "GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceResource");
   }
+
   /**
    * Modify the list of owners for your website or domain. (webResource.update)
    *
-   * @param string $id
-   * The id of a verified site or domain.
+   * @param string $id The id of a verified site or domain.
    * @param GoogleGAL_SiteVerificationWebResourceResource $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceResource
@@ -241,25 +244,25 @@ class GoogleGAL_Service_SiteVerification_WebResource_Resource extends GoogleGAL_
 
 class GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceGettokenRequest extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   protected $siteType = 'GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceGettokenRequestSite';
   protected $siteDataType = '';
   public $verificationMethod;
+
 
   public function setSite(GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceGettokenRequestSite $site)
   {
     $this->site = $site;
   }
-
   public function getSite()
   {
     return $this->site;
   }
-
   public function setVerificationMethod($verificationMethod)
   {
     $this->verificationMethod = $verificationMethod;
   }
-
   public function getVerificationMethod()
   {
     return $this->verificationMethod;
@@ -268,24 +271,24 @@ class GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceGettokenRequ
 
 class GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceGettokenRequestSite extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $identifier;
   public $type;
+
 
   public function setIdentifier($identifier)
   {
     $this->identifier = $identifier;
   }
-
   public function getIdentifier()
   {
     return $this->identifier;
   }
-
   public function setType($type)
   {
     $this->type = $type;
   }
-
   public function getType()
   {
     return $this->type;
@@ -294,24 +297,24 @@ class GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceGettokenRequ
 
 class GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceGettokenResponse extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $method;
   public $token;
+
 
   public function setMethod($method)
   {
     $this->method = $method;
   }
-
   public function getMethod()
   {
     return $this->method;
   }
-
   public function setToken($token)
   {
     $this->token = $token;
   }
-
   public function getToken()
   {
     return $this->token;
@@ -320,14 +323,17 @@ class GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceGettokenResp
 
 class GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceListResponse extends GoogleGAL_Collection
 {
+  protected $collection_key = 'items';
+  protected $internal_gapi_mappings = array(
+  );
   protected $itemsType = 'GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceResource';
   protected $itemsDataType = 'array';
+
 
   public function setItems($items)
   {
     $this->items = $items;
   }
-
   public function getItems()
   {
     return $this->items;
@@ -336,36 +342,35 @@ class GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceListResponse
 
 class GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceResource extends GoogleGAL_Collection
 {
+  protected $collection_key = 'owners';
+  protected $internal_gapi_mappings = array(
+  );
   public $id;
   public $owners;
   protected $siteType = 'GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceResourceSite';
   protected $siteDataType = '';
 
+
   public function setId($id)
   {
     $this->id = $id;
   }
-
   public function getId()
   {
     return $this->id;
   }
-
   public function setOwners($owners)
   {
     $this->owners = $owners;
   }
-
   public function getOwners()
   {
     return $this->owners;
   }
-
   public function setSite(GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceResourceSite $site)
   {
     $this->site = $site;
   }
-
   public function getSite()
   {
     return $this->site;
@@ -374,24 +379,24 @@ class GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceResource ext
 
 class GoogleGAL_Service_SiteVerification_SiteVerificationWebResourceResourceSite extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $identifier;
   public $type;
+
 
   public function setIdentifier($identifier)
   {
     $this->identifier = $identifier;
   }
-
   public function getIdentifier()
   {
     return $this->identifier;
   }
-
   public function setType($type)
   {
     $this->type = $type;
   }
-
   public function getType()
   {
     return $this->type;

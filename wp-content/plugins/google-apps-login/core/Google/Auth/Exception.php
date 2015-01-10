@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-require_once "Google/Exception.php";
+require_once realpath(dirname(__FILE__) . '/../../../autoload.php');
 
 class GoogleGAL_Auth_Exception extends GoogleGAL_Exception
 {

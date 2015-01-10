@@ -13,12 +13,12 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ * 
+ * Updated by Dan Lester 2014
+ * 
  */
 
-require_once "Google/Auth/OAuth2.php";
-require_once "Google/Signer/P12.php";
-require_once "Google/Signer/PEM.php";
-require_once "Google/Utils.php";
+require_once realpath(dirname(__FILE__) . '/../../../autoload.php');
 
 /**
  * Credentials object used for OAuth 2.0 Signed JWT assertion grants.

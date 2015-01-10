@@ -2,8 +2,8 @@
 Contributors: noticesoftware, danstever
 Tags: safari, push, push notifications, web push notifications, Mavericks, mobile, web push, roost, roost.me, roost_me, goroost, goroost.com Post, plugin, admin, posts, page, links, widget, ajax, social, wordpress, dashboard, news, notifications, services
 Requires at least: 3.8
-Tested up to: 4.0
-Stable tag: 2.1.8
+Tested up to: 4.2
+Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,12 +15,14 @@ Drive traffic to your website with Safari Mavericks push notifications and Roost
 
 Push Plugin Features:
 
-* **Safari Web Push** - Take advantage of web push (Desktop Push Notifications) on OS X Mavericks.
+* **Safari Web Push** - Take advantage of web push (Desktop Push Notifications) on OS X Mavericks and Yosemite.
+* **Auto Notifications** - We take the work out of it. Automatically send notifications to your readers when creating a new post.
+* **Category Filters** - Decide which content triggers a notification based on the category.
+* **Notifications on Update** - Easily send notifications when updating posts.
 * **Notification Prompt Controls** - Decide how and when the subscription prompt is shown to your visitors.
 * **Custom Notification Headlines** - Set a custom headline for your notification to be used instead of a post title.
 * **bbPress Subscriptions** - Allows site visitors to subscribe to forums, topics, or individual messages when posting replies.
 * **Detailed Analytics** - *Charts* with detailed metrics about your visitors straight to your WordPress dashboard.
-* **Auto Notifications** - *Now with support for posting via email and from the WordPress mobile app!* We take the work out of it. Automatically send notifications to your readers when creating a new post.
 * **Manual Post Mode** - Send notifications for individual posts when creating. Just check the box.
 * **Scheduled Post Notifications** - Not posting now? Don't worry. Your alerts will go out when your content posts.
 
@@ -47,11 +49,17 @@ Push Plugin Features:
 **Safari Web Push**
 To use Safari Web Push, simply activate the *Roost for Bloggers* plugin. When your site is viewed in a push-enabled browser, the browser will prompt for permission. No additional setup is needed.
 
+**Category Filters**
+With *Auto Push* enabled, you can select which categories are excluded from triggering notifications.
+
+**Notifications on Updates**
+A checkbox is now displayed above the *Publish* button when updating posts. If you want to send a notification when updating, just put a tick in the box. Easy.
+
 **Notification Prompt Control**
 Control how and when you display the subscription prompt to your site visitors. From the settings tab, you can set a minimum number of visits, or create a link or button to trigger the prompt. When a button or link is used, if the browser is not able to receive push notifications, we will automatically hide the link or button.
 
 **Custom Notification Headlines**
-Use custom text for your notification headline by setting it underneath the standard post title when creating your content. If you set a custom headline, it will be used for your notification. Not setting a headline will default to your post title.
+Use custom text for your notification headline by setting it underneath the standard post content. If you set a custom headline, it will be used for your notification. Not setting a headline will default to your post title.
 
 **bbPress**
 With the bbPress extension for Roost, an additional subscribe option will appear next to the default bbPress subscription links. (This does NOT replace traditional subscription methods, only adds a new browser push channel.) Options include Forum subscriptions, Topic subscriptions, and subscribing to your individual posts. Notifications are sent about new content **only** to the visitors that have subscribed to the forum, topic, or post.
@@ -70,6 +78,12 @@ When checked, your site will automatically receive the newest (and coolest) feat
 
 **Roost Analytics & Roost JS**
 Detailed metrics are provided in the dashboard. These metrics include subscribes, notifications sent, reads, total page views, and more.
+
+**Advanced Settings - Use Segmented Send**
+Use WordPress categories to target notifications based on Roost segments. ***DISCLAIMER*** You must be assigning users segments to send notifications. If not, notificaitons will not be sent to your subscribers.
+
+**Advanced Settings - Use Custom Script**
+In some cases, we’ll ask you to use a custom script. Paste it in the text area shown. (Enabling this feature will not include the normal Roost.js)
 
 == Frequently Asked Questions ==
 
@@ -102,6 +116,14 @@ Nope. Just you.
 6. Powerful control on how your visitors can subscribe and how your notifications are sent.
 
 == Changelog ==
+= 2.2.0 =
+* Ability to exclude posts published in specified categories from automatically sending notifications
+* Send notifications when updating a post
+* Can automatically use WordPress categories to target notifications based on Roost segments (You must be assigning users segments to send notifications.)
+* Use custom script instead of standard Roost JavaScript (Custom script provided by Roost.)
+* Code Cleanup
+* Bugfixes
+
 = 2.1.8 =
 * Fixed (encoded) URL that was causing W3C validation error
 * Removed outdated metrics from the Roost dashboard inside WP Admin
@@ -208,6 +230,9 @@ Nope. Just you.
 * Initial Release
 
 == Upgrade Notice ==
+= 2.2.0 =
+* Exclude categories from Auto Push - Send notification on post updates - Targeted sending with Roost segments - Custom script option
+
 = 2.1.8 =
 * Fixed URL causing W3C validation error -- removed invalid metrics in dashboard
 

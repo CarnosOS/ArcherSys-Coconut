@@ -19,8 +19,7 @@
  * Service definition for GroupsMigration (v1).
  *
  * <p>
- * Groups Migration Api.
- * </p>
+ * Groups Migration Api.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -86,8 +85,7 @@ class GoogleGAL_Service_GroupsMigration_Archive_Resource extends GoogleGAL_Servi
   /**
    * Inserts a new mail into the archive of the Google group. (archive.insert)
    *
-   * @param string $groupId
-   * The group ID
+   * @param string $groupId The group ID
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_GroupsMigration_Groups
    */
@@ -104,24 +102,24 @@ class GoogleGAL_Service_GroupsMigration_Archive_Resource extends GoogleGAL_Servi
 
 class GoogleGAL_Service_GroupsMigration_Groups extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $kind;
   public $responseCode;
+
 
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setResponseCode($responseCode)
   {
     $this->responseCode = $responseCode;
   }
-
   public function getResponseCode()
   {
     return $this->responseCode;

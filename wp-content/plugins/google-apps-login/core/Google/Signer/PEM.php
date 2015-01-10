@@ -13,10 +13,12 @@
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and
 * limitations under the License.
+* 
+* Updated by Dan Lester 2014
+* 
 */
 
-require_once 'Google/Auth/Exception.php';
-require_once 'Google/Signer/Abstract.php';
+require_once realpath(dirname(__FILE__) . '/../../../autoload.php');
 
 /**
  * Signs data with PEM key (e.g. taken from new JSON files).

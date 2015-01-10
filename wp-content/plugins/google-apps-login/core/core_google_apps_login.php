@@ -48,7 +48,11 @@ class core_google_apps_login {
 		
 		// Google PHP Client obtained from https://github.com/google/google-api-php-client
 		// Using modified Google Client to avoid name clashes - rename process:
+		// On OSX requires export LC_CTYPE=C and export LANG=C in your ~/.profile
 		// find . -type f -exec sed -i '' -e 's/Google_/GoogleGAL_/g' {} +
+		// We also updated Google/Auth/AssertionCredentials.php to be able to accept the PEM class
+		// We wrote PEM class here: Google/Signer/PEM.php
+		// Also wrote our own autoload.php in /core
 		
 		$client = $this->get_Google_Client();
 				
@@ -62,9 +66,9 @@ class core_google_apps_login {
 		
 		$oauthservice = null;
 		if ($includeoauth) {
-			if (!class_exists('GoogleGAL_Service_Oauth2')) {
+			/*if (!class_exists('GoogleGAL_Service_Oauth2')) {
 				require_once( 'Google/Service/Oauth2.php' );
-			}
+			}*/
 			$oauthservice = new GoogleGAL_Service_Oauth2($client);
 		}
 				
@@ -148,7 +152,7 @@ class core_google_apps_login {
 		
 		// Generate a CSRF token
 		$client->setState(urlencode(
-				wp_create_nonce('google_apps_login-'.$this->get_cookie_value())
+				$this->session_indep_create_nonce('google_apps_login-'.$this->get_cookie_value())
 				.'|'.$this->get_redirect_url()
 		));
 		
@@ -286,7 +290,7 @@ class core_google_apps_login {
 			$retnonce = $statevars[0];
 			$retredirectto = $statevars[1];
 			
-			if (!wp_verify_nonce($retnonce, 'google_apps_login-'.$this->get_cookie_value())) {
+			if (!$this->session_indep_verify_nonce($retnonce, 'google_apps_login-'.$this->get_cookie_value())) {
 				$user = new WP_Error('ga_login_error', __( "Session mismatch - try again, but there could be a problem setting cookies" , 'google-apps-login') );
 				return $this->displayAndReturnError($user);
 			}
@@ -409,8 +413,8 @@ class core_google_apps_login {
 	}
 	
 	public function ga_init() {
-		if (!isset($_COOKIE['google_apps_login']) && $GLOBALS['pagenow'] == 'wp-login.php') {
-			setcookie('google_apps_login', $this->get_cookie_value(), time()+1800, '/', defined(COOKIE_DOMAIN) ? COOKIE_DOMAIN : '' );
+		if ($GLOBALS['pagenow'] == 'wp-login.php') {
+			setcookie('google_apps_login', $this->get_cookie_value(), time()+36000, '/', defined(COOKIE_DOMAIN) ? COOKIE_DOMAIN : '' );
 		}
 	}
 	
@@ -427,6 +431,46 @@ class core_google_apps_login {
 		}
 		
 		return $login_url;
+	}
+	
+	// Build our own nonce functions as wp_create_nonce is user dependent,
+	// and our nonce is created when logged-out, then verified when logged-in
+	
+	protected function session_indep_create_nonce($action = -1) {
+		$i = wp_nonce_tick();
+		return substr( wp_hash( $i . '|' . $action, 'nonce' ), -12, 10 );
+	}
+	
+	protected function session_indep_verify_nonce( $nonce, $action = -1 ) {
+		$nonce = (string) $nonce;
+		if ( empty( $nonce ) ) {
+			return false;
+		}
+	
+		$i = wp_nonce_tick();
+	
+		// Nonce generated 0-12 hours ago
+		$expected = substr( wp_hash( $i . '|' . $action, 'nonce'), -12, 10 );
+		if ( $this->hash_equals( $expected, $nonce ) ) {
+			return 1;
+		}
+	
+		// Nonce generated 12-24 hours ago
+		$expected = substr( wp_hash( ( $i - 1 ) . '|' . $action, 'nonce' ), -12, 10 );
+		if ( $this->hash_equals( $expected, $nonce ) ) {
+			return 2;
+		}
+	
+		// Invalid nonce
+		return false;
+	}
+	
+	private function hash_equals($expected, $nonce) {
+		// Global/PHP fn hash_equals didn't exist before WP3.9.2
+		if (function_exists('hash_equals')) {
+			return hash_equals($expected, $nonce);
+		}
+		return $expected == $nonce;
 	}
 	
 	// ADMIN AND OPTIONS
@@ -920,7 +964,7 @@ class core_google_apps_login {
 	}
 	
 	protected $ga_options = null;
-	protected function get_option_galogin() {
+	public function get_option_galogin() {
 		if ($this->ga_options != null) {
 			return $this->ga_options;
 		}
@@ -1044,7 +1088,7 @@ class core_google_apps_login {
 		return $options['ga_clientid'];
 	}
 	
-	public function get_Auth_AssertionCredentials($scopes) {
+	public function get_Auth_AssertionCredentials($scopes, $sub_email='') {
 		$options = $this->get_option_galogin();
 		$saoptions = $this->get_sa_option();
 		$this->setIncludePath();
@@ -1052,7 +1096,7 @@ class core_google_apps_login {
 			require_once( 'Google/Auth/AssertionCredentials.php' );
 		}
 		
-		if ($saoptions['ga_serviceemail'] == '' || $options['ga_domainadmin'] == '' || $saoptions['ga_sakey'] == '') {
+		if ($saoptions['ga_serviceemail'] == '' || $saoptions['ga_sakey'] == '') {
 			throw new GAL_Service_Exception('Please configure Service Account in Google Apps Login setup');
 		}
 		
@@ -1066,7 +1110,8 @@ class core_google_apps_login {
 		);
 		$cred->setSignerClass('GoogleGAL_Signer_PEM');
 			
-		$cred->sub = $options['ga_domainadmin'];
+		$cred->sub = $sub_email != '' ? $sub_email : $options['ga_domainadmin'];
+		
 		return $cred;
 	}
 	

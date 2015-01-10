@@ -19,8 +19,7 @@
  * Service definition for DoubleClickBidManager (v1).
  *
  * <p>
- * API for viewing and managing your reports in DoubleClick Bid Manager.
- * </p>
+ * API for viewing and managing your reports in DoubleClick Bid Manager.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -165,6 +164,7 @@ class GoogleGAL_Service_DoubleClickBidManager_Lineitems_Resource extends GoogleG
     $params = array_merge($params, $optParams);
     return $this->call('downloadlineitems', array($params), "GoogleGAL_Service_DoubleClickBidManager_DownloadLineItemsResponse");
   }
+
   /**
    * Uploads line items in CSV format. (lineitems.uploadlineitems)
    *
@@ -204,12 +204,12 @@ class GoogleGAL_Service_DoubleClickBidManager_Queries_Resource extends GoogleGAL
     $params = array_merge($params, $optParams);
     return $this->call('createquery', array($params), "GoogleGAL_Service_DoubleClickBidManager_Query");
   }
+
   /**
    * Deletes a stored query as well as the associated stored reports.
    * (queries.deletequery)
    *
-   * @param string $queryId
-   * Query ID to delete.
+   * @param string $queryId Query ID to delete.
    * @param array $optParams Optional parameters.
    */
   public function deletequery($queryId, $optParams = array())
@@ -218,11 +218,11 @@ class GoogleGAL_Service_DoubleClickBidManager_Queries_Resource extends GoogleGAL
     $params = array_merge($params, $optParams);
     return $this->call('deletequery', array($params));
   }
+
   /**
    * Retrieves a stored query. (queries.getquery)
    *
-   * @param string $queryId
-   * Query ID to retrieve.
+   * @param string $queryId Query ID to retrieve.
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_DoubleClickBidManager_Query
    */
@@ -232,6 +232,7 @@ class GoogleGAL_Service_DoubleClickBidManager_Queries_Resource extends GoogleGAL
     $params = array_merge($params, $optParams);
     return $this->call('getquery', array($params), "GoogleGAL_Service_DoubleClickBidManager_Query");
   }
+
   /**
    * Retrieves stored queries. (queries.listqueries)
    *
@@ -244,11 +245,11 @@ class GoogleGAL_Service_DoubleClickBidManager_Queries_Resource extends GoogleGAL
     $params = array_merge($params, $optParams);
     return $this->call('listqueries', array($params), "GoogleGAL_Service_DoubleClickBidManager_ListQueriesResponse");
   }
+
   /**
    * Runs a stored query to generate a report. (queries.runquery)
    *
-   * @param string $queryId
-   * Query ID to run.
+   * @param string $queryId Query ID to run.
    * @param GoogleGAL_RunQueryRequest $postBody
    * @param array $optParams Optional parameters.
    */
@@ -274,8 +275,7 @@ class GoogleGAL_Service_DoubleClickBidManager_Reports_Resource extends GoogleGAL
   /**
    * Retrieves stored reports. (reports.listreports)
    *
-   * @param string $queryId
-   * Query ID with which the reports are associated.
+   * @param string $queryId Query ID with which the reports are associated.
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_DoubleClickBidManager_ListReportsResponse
    */
@@ -292,35 +292,34 @@ class GoogleGAL_Service_DoubleClickBidManager_Reports_Resource extends GoogleGAL
 
 class GoogleGAL_Service_DoubleClickBidManager_DownloadLineItemsRequest extends GoogleGAL_Collection
 {
+  protected $collection_key = 'filterIds';
+  protected $internal_gapi_mappings = array(
+  );
   public $filterIds;
   public $filterType;
   public $format;
+
 
   public function setFilterIds($filterIds)
   {
     $this->filterIds = $filterIds;
   }
-
   public function getFilterIds()
   {
     return $this->filterIds;
   }
-
   public function setFilterType($filterType)
   {
     $this->filterType = $filterType;
   }
-
   public function getFilterType()
   {
     return $this->filterType;
   }
-
   public function setFormat($format)
   {
     $this->format = $format;
   }
-
   public function getFormat()
   {
     return $this->format;
@@ -329,13 +328,15 @@ class GoogleGAL_Service_DoubleClickBidManager_DownloadLineItemsRequest extends G
 
 class GoogleGAL_Service_DoubleClickBidManager_DownloadLineItemsResponse extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $lineItems;
+
 
   public function setLineItems($lineItems)
   {
     $this->lineItems = $lineItems;
   }
-
   public function getLineItems()
   {
     return $this->lineItems;
@@ -344,24 +345,24 @@ class GoogleGAL_Service_DoubleClickBidManager_DownloadLineItemsResponse extends 
 
 class GoogleGAL_Service_DoubleClickBidManager_FilterPair extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $type;
   public $value;
+
 
   public function setType($type)
   {
     $this->type = $type;
   }
-
   public function getType()
   {
     return $this->type;
   }
-
   public function setValue($value)
   {
     $this->value = $value;
   }
-
   public function getValue()
   {
     return $this->value;
@@ -370,25 +371,26 @@ class GoogleGAL_Service_DoubleClickBidManager_FilterPair extends GoogleGAL_Model
 
 class GoogleGAL_Service_DoubleClickBidManager_ListQueriesResponse extends GoogleGAL_Collection
 {
+  protected $collection_key = 'queries';
+  protected $internal_gapi_mappings = array(
+  );
   public $kind;
   protected $queriesType = 'GoogleGAL_Service_DoubleClickBidManager_Query';
   protected $queriesDataType = 'array';
+
 
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setQueries($queries)
   {
     $this->queries = $queries;
   }
-
   public function getQueries()
   {
     return $this->queries;
@@ -397,25 +399,26 @@ class GoogleGAL_Service_DoubleClickBidManager_ListQueriesResponse extends Google
 
 class GoogleGAL_Service_DoubleClickBidManager_ListReportsResponse extends GoogleGAL_Collection
 {
+  protected $collection_key = 'reports';
+  protected $internal_gapi_mappings = array(
+  );
   public $kind;
   protected $reportsType = 'GoogleGAL_Service_DoubleClickBidManager_Report';
   protected $reportsDataType = 'array';
+
 
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setReports($reports)
   {
     $this->reports = $reports;
   }
-
   public function getReports()
   {
     return $this->reports;
@@ -424,6 +427,9 @@ class GoogleGAL_Service_DoubleClickBidManager_ListReportsResponse extends Google
 
 class GoogleGAL_Service_DoubleClickBidManager_Parameters extends GoogleGAL_Collection
 {
+  protected $collection_key = 'metrics';
+  protected $internal_gapi_mappings = array(
+  );
   protected $filtersType = 'GoogleGAL_Service_DoubleClickBidManager_FilterPair';
   protected $filtersDataType = 'array';
   public $groupBys;
@@ -431,51 +437,43 @@ class GoogleGAL_Service_DoubleClickBidManager_Parameters extends GoogleGAL_Colle
   public $metrics;
   public $type;
 
+
   public function setFilters($filters)
   {
     $this->filters = $filters;
   }
-
   public function getFilters()
   {
     return $this->filters;
   }
-
   public function setGroupBys($groupBys)
   {
     $this->groupBys = $groupBys;
   }
-
   public function getGroupBys()
   {
     return $this->groupBys;
   }
-
   public function setIncludeInviteData($includeInviteData)
   {
     $this->includeInviteData = $includeInviteData;
   }
-
   public function getIncludeInviteData()
   {
     return $this->includeInviteData;
   }
-
   public function setMetrics($metrics)
   {
     $this->metrics = $metrics;
   }
-
   public function getMetrics()
   {
     return $this->metrics;
   }
-
   public function setType($type)
   {
     $this->type = $type;
   }
-
   public function getType()
   {
     return $this->type;
@@ -484,6 +482,8 @@ class GoogleGAL_Service_DoubleClickBidManager_Parameters extends GoogleGAL_Colle
 
 class GoogleGAL_Service_DoubleClickBidManager_Query extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $kind;
   protected $metadataType = 'GoogleGAL_Service_DoubleClickBidManager_QueryMetadata';
   protected $metadataDataType = '';
@@ -496,81 +496,67 @@ class GoogleGAL_Service_DoubleClickBidManager_Query extends GoogleGAL_Model
   protected $scheduleDataType = '';
   public $timezoneCode;
 
+
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setMetadata(GoogleGAL_Service_DoubleClickBidManager_QueryMetadata $metadata)
   {
     $this->metadata = $metadata;
   }
-
   public function getMetadata()
   {
     return $this->metadata;
   }
-
   public function setParams(GoogleGAL_Service_DoubleClickBidManager_Parameters $params)
   {
     $this->params = $params;
   }
-
   public function getParams()
   {
     return $this->params;
   }
-
   public function setQueryId($queryId)
   {
     $this->queryId = $queryId;
   }
-
   public function getQueryId()
   {
     return $this->queryId;
   }
-
   public function setReportDataEndTimeMs($reportDataEndTimeMs)
   {
     $this->reportDataEndTimeMs = $reportDataEndTimeMs;
   }
-
   public function getReportDataEndTimeMs()
   {
     return $this->reportDataEndTimeMs;
   }
-
   public function setReportDataStartTimeMs($reportDataStartTimeMs)
   {
     $this->reportDataStartTimeMs = $reportDataStartTimeMs;
   }
-
   public function getReportDataStartTimeMs()
   {
     return $this->reportDataStartTimeMs;
   }
-
   public function setSchedule(GoogleGAL_Service_DoubleClickBidManager_QuerySchedule $schedule)
   {
     $this->schedule = $schedule;
   }
-
   public function getSchedule()
   {
     return $this->schedule;
   }
-
   public function setTimezoneCode($timezoneCode)
   {
     $this->timezoneCode = $timezoneCode;
   }
-
   public function getTimezoneCode()
   {
     return $this->timezoneCode;
@@ -579,6 +565,9 @@ class GoogleGAL_Service_DoubleClickBidManager_Query extends GoogleGAL_Model
 
 class GoogleGAL_Service_DoubleClickBidManager_QueryMetadata extends GoogleGAL_Collection
 {
+  protected $collection_key = 'shareEmailAddress';
+  protected $internal_gapi_mappings = array(
+  );
   public $dataRange;
   public $format;
   public $googleCloudStoragePathForLatestReport;
@@ -590,101 +579,83 @@ class GoogleGAL_Service_DoubleClickBidManager_QueryMetadata extends GoogleGAL_Co
   public $shareEmailAddress;
   public $title;
 
+
   public function setDataRange($dataRange)
   {
     $this->dataRange = $dataRange;
   }
-
   public function getDataRange()
   {
     return $this->dataRange;
   }
-
   public function setFormat($format)
   {
     $this->format = $format;
   }
-
   public function getFormat()
   {
     return $this->format;
   }
-
   public function setGoogleCloudStoragePathForLatestReport($googleCloudStoragePathForLatestReport)
   {
     $this->googleCloudStoragePathForLatestReport = $googleCloudStoragePathForLatestReport;
   }
-
   public function getGoogleCloudStoragePathForLatestReport()
   {
     return $this->googleCloudStoragePathForLatestReport;
   }
-
   public function setGoogleDrivePathForLatestReport($googleDrivePathForLatestReport)
   {
     $this->googleDrivePathForLatestReport = $googleDrivePathForLatestReport;
   }
-
   public function getGoogleDrivePathForLatestReport()
   {
     return $this->googleDrivePathForLatestReport;
   }
-
   public function setLatestReportRunTimeMs($latestReportRunTimeMs)
   {
     $this->latestReportRunTimeMs = $latestReportRunTimeMs;
   }
-
   public function getLatestReportRunTimeMs()
   {
     return $this->latestReportRunTimeMs;
   }
-
   public function setReportCount($reportCount)
   {
     $this->reportCount = $reportCount;
   }
-
   public function getReportCount()
   {
     return $this->reportCount;
   }
-
   public function setRunning($running)
   {
     $this->running = $running;
   }
-
   public function getRunning()
   {
     return $this->running;
   }
-
   public function setSendNotification($sendNotification)
   {
     $this->sendNotification = $sendNotification;
   }
-
   public function getSendNotification()
   {
     return $this->sendNotification;
   }
-
   public function setShareEmailAddress($shareEmailAddress)
   {
     $this->shareEmailAddress = $shareEmailAddress;
   }
-
   public function getShareEmailAddress()
   {
     return $this->shareEmailAddress;
   }
-
   public function setTitle($title)
   {
     $this->title = $title;
   }
-
   public function getTitle()
   {
     return $this->title;
@@ -693,46 +664,42 @@ class GoogleGAL_Service_DoubleClickBidManager_QueryMetadata extends GoogleGAL_Co
 
 class GoogleGAL_Service_DoubleClickBidManager_QuerySchedule extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $endTimeMs;
   public $frequency;
   public $nextRunMinuteOfDay;
   public $nextRunTimezoneCode;
 
+
   public function setEndTimeMs($endTimeMs)
   {
     $this->endTimeMs = $endTimeMs;
   }
-
   public function getEndTimeMs()
   {
     return $this->endTimeMs;
   }
-
   public function setFrequency($frequency)
   {
     $this->frequency = $frequency;
   }
-
   public function getFrequency()
   {
     return $this->frequency;
   }
-
   public function setNextRunMinuteOfDay($nextRunMinuteOfDay)
   {
     $this->nextRunMinuteOfDay = $nextRunMinuteOfDay;
   }
-
   public function getNextRunMinuteOfDay()
   {
     return $this->nextRunMinuteOfDay;
   }
-
   public function setNextRunTimezoneCode($nextRunTimezoneCode)
   {
     $this->nextRunTimezoneCode = $nextRunTimezoneCode;
   }
-
   public function getNextRunTimezoneCode()
   {
     return $this->nextRunTimezoneCode;
@@ -741,6 +708,8 @@ class GoogleGAL_Service_DoubleClickBidManager_QuerySchedule extends GoogleGAL_Mo
 
 class GoogleGAL_Service_DoubleClickBidManager_Report extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   protected $keyType = 'GoogleGAL_Service_DoubleClickBidManager_ReportKey';
   protected $keyDataType = '';
   protected $metadataType = 'GoogleGAL_Service_DoubleClickBidManager_ReportMetadata';
@@ -748,31 +717,27 @@ class GoogleGAL_Service_DoubleClickBidManager_Report extends GoogleGAL_Model
   protected $paramsType = 'GoogleGAL_Service_DoubleClickBidManager_Parameters';
   protected $paramsDataType = '';
 
+
   public function setKey(GoogleGAL_Service_DoubleClickBidManager_ReportKey $key)
   {
     $this->key = $key;
   }
-
   public function getKey()
   {
     return $this->key;
   }
-
   public function setMetadata(GoogleGAL_Service_DoubleClickBidManager_ReportMetadata $metadata)
   {
     $this->metadata = $metadata;
   }
-
   public function getMetadata()
   {
     return $this->metadata;
   }
-
   public function setParams(GoogleGAL_Service_DoubleClickBidManager_Parameters $params)
   {
     $this->params = $params;
   }
-
   public function getParams()
   {
     return $this->params;
@@ -781,13 +746,15 @@ class GoogleGAL_Service_DoubleClickBidManager_Report extends GoogleGAL_Model
 
 class GoogleGAL_Service_DoubleClickBidManager_ReportFailure extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $errorCode;
+
 
   public function setErrorCode($errorCode)
   {
     $this->errorCode = $errorCode;
   }
-
   public function getErrorCode()
   {
     return $this->errorCode;
@@ -796,24 +763,24 @@ class GoogleGAL_Service_DoubleClickBidManager_ReportFailure extends GoogleGAL_Mo
 
 class GoogleGAL_Service_DoubleClickBidManager_ReportKey extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $queryId;
   public $reportId;
+
 
   public function setQueryId($queryId)
   {
     $this->queryId = $queryId;
   }
-
   public function getQueryId()
   {
     return $this->queryId;
   }
-
   public function setReportId($reportId)
   {
     $this->reportId = $reportId;
   }
-
   public function getReportId()
   {
     return $this->reportId;
@@ -822,47 +789,43 @@ class GoogleGAL_Service_DoubleClickBidManager_ReportKey extends GoogleGAL_Model
 
 class GoogleGAL_Service_DoubleClickBidManager_ReportMetadata extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $googleCloudStoragePath;
   public $reportDataEndTimeMs;
   public $reportDataStartTimeMs;
   protected $statusType = 'GoogleGAL_Service_DoubleClickBidManager_ReportStatus';
   protected $statusDataType = '';
 
+
   public function setGoogleCloudStoragePath($googleCloudStoragePath)
   {
     $this->googleCloudStoragePath = $googleCloudStoragePath;
   }
-
   public function getGoogleCloudStoragePath()
   {
     return $this->googleCloudStoragePath;
   }
-
   public function setReportDataEndTimeMs($reportDataEndTimeMs)
   {
     $this->reportDataEndTimeMs = $reportDataEndTimeMs;
   }
-
   public function getReportDataEndTimeMs()
   {
     return $this->reportDataEndTimeMs;
   }
-
   public function setReportDataStartTimeMs($reportDataStartTimeMs)
   {
     $this->reportDataStartTimeMs = $reportDataStartTimeMs;
   }
-
   public function getReportDataStartTimeMs()
   {
     return $this->reportDataStartTimeMs;
   }
-
   public function setStatus(GoogleGAL_Service_DoubleClickBidManager_ReportStatus $status)
   {
     $this->status = $status;
   }
-
   public function getStatus()
   {
     return $this->status;
@@ -871,47 +834,43 @@ class GoogleGAL_Service_DoubleClickBidManager_ReportMetadata extends GoogleGAL_M
 
 class GoogleGAL_Service_DoubleClickBidManager_ReportStatus extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   protected $failureType = 'GoogleGAL_Service_DoubleClickBidManager_ReportFailure';
   protected $failureDataType = '';
   public $finishTimeMs;
   public $format;
   public $state;
 
+
   public function setFailure(GoogleGAL_Service_DoubleClickBidManager_ReportFailure $failure)
   {
     $this->failure = $failure;
   }
-
   public function getFailure()
   {
     return $this->failure;
   }
-
   public function setFinishTimeMs($finishTimeMs)
   {
     $this->finishTimeMs = $finishTimeMs;
   }
-
   public function getFinishTimeMs()
   {
     return $this->finishTimeMs;
   }
-
   public function setFormat($format)
   {
     $this->format = $format;
   }
-
   public function getFormat()
   {
     return $this->format;
   }
-
   public function setState($state)
   {
     $this->state = $state;
   }
-
   public function getState()
   {
     return $this->state;
@@ -920,6 +879,9 @@ class GoogleGAL_Service_DoubleClickBidManager_ReportStatus extends GoogleGAL_Mod
 
 class GoogleGAL_Service_DoubleClickBidManager_RowStatus extends GoogleGAL_Collection
 {
+  protected $collection_key = 'errors';
+  protected $internal_gapi_mappings = array(
+  );
   public $changed;
   public $entityId;
   public $entityName;
@@ -927,61 +889,51 @@ class GoogleGAL_Service_DoubleClickBidManager_RowStatus extends GoogleGAL_Collec
   public $persisted;
   public $rowNumber;
 
+
   public function setChanged($changed)
   {
     $this->changed = $changed;
   }
-
   public function getChanged()
   {
     return $this->changed;
   }
-
   public function setEntityId($entityId)
   {
     $this->entityId = $entityId;
   }
-
   public function getEntityId()
   {
     return $this->entityId;
   }
-
   public function setEntityName($entityName)
   {
     $this->entityName = $entityName;
   }
-
   public function getEntityName()
   {
     return $this->entityName;
   }
-
   public function setErrors($errors)
   {
     $this->errors = $errors;
   }
-
   public function getErrors()
   {
     return $this->errors;
   }
-
   public function setPersisted($persisted)
   {
     $this->persisted = $persisted;
   }
-
   public function getPersisted()
   {
     return $this->persisted;
   }
-
   public function setRowNumber($rowNumber)
   {
     $this->rowNumber = $rowNumber;
   }
-
   public function getRowNumber()
   {
     return $this->rowNumber;
@@ -990,46 +942,42 @@ class GoogleGAL_Service_DoubleClickBidManager_RowStatus extends GoogleGAL_Collec
 
 class GoogleGAL_Service_DoubleClickBidManager_RunQueryRequest extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $dataRange;
   public $reportDataEndTimeMs;
   public $reportDataStartTimeMs;
   public $timezoneCode;
 
+
   public function setDataRange($dataRange)
   {
     $this->dataRange = $dataRange;
   }
-
   public function getDataRange()
   {
     return $this->dataRange;
   }
-
   public function setReportDataEndTimeMs($reportDataEndTimeMs)
   {
     $this->reportDataEndTimeMs = $reportDataEndTimeMs;
   }
-
   public function getReportDataEndTimeMs()
   {
     return $this->reportDataEndTimeMs;
   }
-
   public function setReportDataStartTimeMs($reportDataStartTimeMs)
   {
     $this->reportDataStartTimeMs = $reportDataStartTimeMs;
   }
-
   public function getReportDataStartTimeMs()
   {
     return $this->reportDataStartTimeMs;
   }
-
   public function setTimezoneCode($timezoneCode)
   {
     $this->timezoneCode = $timezoneCode;
   }
-
   public function getTimezoneCode()
   {
     return $this->timezoneCode;
@@ -1038,35 +986,33 @@ class GoogleGAL_Service_DoubleClickBidManager_RunQueryRequest extends GoogleGAL_
 
 class GoogleGAL_Service_DoubleClickBidManager_UploadLineItemsRequest extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $dryRun;
   public $format;
   public $lineItems;
+
 
   public function setDryRun($dryRun)
   {
     $this->dryRun = $dryRun;
   }
-
   public function getDryRun()
   {
     return $this->dryRun;
   }
-
   public function setFormat($format)
   {
     $this->format = $format;
   }
-
   public function getFormat()
   {
     return $this->format;
   }
-
   public function setLineItems($lineItems)
   {
     $this->lineItems = $lineItems;
   }
-
   public function getLineItems()
   {
     return $this->lineItems;
@@ -1075,14 +1021,16 @@ class GoogleGAL_Service_DoubleClickBidManager_UploadLineItemsRequest extends Goo
 
 class GoogleGAL_Service_DoubleClickBidManager_UploadLineItemsResponse extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   protected $uploadStatusType = 'GoogleGAL_Service_DoubleClickBidManager_UploadStatus';
   protected $uploadStatusDataType = '';
+
 
   public function setUploadStatus(GoogleGAL_Service_DoubleClickBidManager_UploadStatus $uploadStatus)
   {
     $this->uploadStatus = $uploadStatus;
   }
-
   public function getUploadStatus()
   {
     return $this->uploadStatus;
@@ -1091,25 +1039,26 @@ class GoogleGAL_Service_DoubleClickBidManager_UploadLineItemsResponse extends Go
 
 class GoogleGAL_Service_DoubleClickBidManager_UploadStatus extends GoogleGAL_Collection
 {
+  protected $collection_key = 'rowStatus';
+  protected $internal_gapi_mappings = array(
+  );
   public $errors;
   protected $rowStatusType = 'GoogleGAL_Service_DoubleClickBidManager_RowStatus';
   protected $rowStatusDataType = 'array';
+
 
   public function setErrors($errors)
   {
     $this->errors = $errors;
   }
-
   public function getErrors()
   {
     return $this->errors;
   }
-
   public function setRowStatus($rowStatus)
   {
     $this->rowStatus = $rowStatus;
   }
-
   public function getRowStatus()
   {
     return $this->rowStatus;

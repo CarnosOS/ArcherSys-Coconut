@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+    exit;
 }
 
 class Roost_bbPress {
@@ -17,20 +17,20 @@ class Roost_bbPress {
         }
         return $bbPress;
     }
-    
+
     public function __construct() {
         //blank
     }
 
-    public static function init() {        
+    public static function init() {
         $roost_bbp = null;
         if ( is_null( $roost_bbp ) ) {
-			$roost_bbp = new self();
+            $roost_bbp = new self();
             self::add_actions();
-		}
-		return $roost_bbp;
+        }
+        return $roost_bbp;
     }
-    
+
     public static function add_actions() {
         add_action( 'wp_enqueue_scripts', array( __CLASS__, 'load_roost_bbp_scripts' ), 1 );
 
@@ -48,7 +48,7 @@ class Roost_bbPress {
         add_action( 'bbp_edit_reply', array( __CLASS__, 'roost_bbp_subscriptions_handler' ), 1 );
         add_action( 'bbp_new_topic', array( __CLASS__, 'roost_bbp_subscriptions_handler' ), 1 );
         add_action( 'bbp_edit_topic', array( __CLASS__, 'roost_bbp_subscriptions_handler' ), 1 );
-        
+
         add_action( 'bbp_new_reply', array( __CLASS__, 'roost_bbp_notify_subscribers' ), 11, 5 );
         add_action( 'bbp_new_topic', array( __CLASS__, 'roost_bbp_notify_subscribers' ), 11, 5 );
 
@@ -59,8 +59,8 @@ class Roost_bbPress {
 
     public static function load_roost_bbp_scripts() {
         wp_enqueue_script( 'roostbbpjs', ROOST_URL . 'layout/js/roostbbp.js', array('jquery'), Roost::$roost_version, false );
-	}
-    
+    }
+
     public static function roost_bbp_reply_subscription( $post ) {
         global $post;
         $roost_bbp_subscriptions = get_post_meta( $post->ID, '_roost_bbp_subscription', true );
@@ -103,7 +103,7 @@ class Roost_bbPress {
         $url = bbp_get_topic_permalink( $post_id );
 
         $roost_bbp_subscriptions = get_post_meta( $post_id, '_roost_bbp_subscription', true );
-        
+
         echo( sprintf( "<span id='roost-subscribe-%d' style='display:none;'><a href='%s' data-post='%d' class='roost-topic-subscribe-link'></a></span>", $post_id, $url, $post_id ) );
         ?>
         <script>
@@ -122,7 +122,7 @@ class Roost_bbPress {
                 <?php
                     }
                 ?>
-                
+
                 setTimeout(function(){
                     if ( window.roostEnabled ){
                         if ( 'undefined' !== typeof registrations[window.roostToken] ) {
@@ -179,13 +179,13 @@ class Roost_bbPress {
         </script>
         <?php
     }
-    
+
     public static function roost_bbp_ajax_subscription() {
         $post_id = $_POST['postID'];
         self::roost_bbp_subscriptions_handler( $post_id );
         die();
     }
-    
+
     public static function roost_bbp_forum_subscription( $post ) {
         global $post;
         $post_id = $post->ID;
@@ -193,7 +193,7 @@ class Roost_bbPress {
         $url = bbp_get_forum_permalink( $post_id );
 
         $roost_bbp_subscriptions = get_post_meta( $post_id, '_roost_bbp_subscription', true );
-        
+
         echo( sprintf( "<span id='roost-subscribe-%d' style='display:none;'><a href='%s' data-post='%d' class='roost-forum-subscribe-link' class='subscription-toggle'></a></span>", $post_id, $url, $post_id ) );
         ?>
         <script>
@@ -212,7 +212,7 @@ class Roost_bbPress {
                 <?php
                     }
                 ?>
-                
+
                 setTimeout(function(){
                     if ( window.roostEnabled ){
                         if ( 'undefined' !== typeof registrations[window.roostToken] ) {
@@ -263,7 +263,7 @@ class Roost_bbPress {
         </script>
         <?php
     }
-    
+
     public static function roost_bbp_subscriptions_handler( $post_id ) {
         if ( isset( $_POST['roostToken'] ) ) {
             $action = $_POST['action'];
@@ -280,7 +280,7 @@ class Roost_bbPress {
                 $roost_bbp_subscription = true;
             } else {
                 $roost_bbp_subscription = false;
-            }   
+            }
 
             $subscriptions = get_post_meta( $post_id, '_roost_bbp_subscription', true );
             if ( ! empty( $subscriptions )  ) {
@@ -321,11 +321,11 @@ class Roost_bbPress {
             update_post_meta( $post_id, '_roost_bbp_subscription', $subscriptions );
         }
     }
-    
+
     public static function roost_bbp_remove_all_subscriptions( $action ) {
         delete_post_meta( $action, '_roost_bbp_subscription' );
     }
-    
+
     public static function roost_bbp_notify_subscribers( $reply_id, $topic_id, $forum_id, $anonymous_data, $reply_author = 0 ) {
         $topic_id = bbp_get_topic_id( $topic_id );
         $forum_id = bbp_get_forum_id( $forum_id );
@@ -333,23 +333,23 @@ class Roost_bbPress {
         if ( ! bbp_is_topic_published( $topic_id ) ) {
             return false;
         }
-        
+
         $topic_title = bbp_get_topic_title( $topic_id );
         $topic_url = get_permalink( $topic_id );
         if ( isset( $_POST['bbp_reply_to'] ) ) {
             $reply_to_id = $_POST['bbp_reply_to'];
         }
-        
+
         $roost_settings = ROOST::roost_settings();
         $app_key = $roost_settings['appKey'];
         $app_secret = $roost_settings['appSecret'];
-        
+
         $message = 'New Post in ' . $topic_title;
-        
+
         if ( ! empty( $reply_to_id ) ) {
             $reply_subscriptions = get_post_meta( $reply_to_id, '_roost_bbp_subscription', true );
         }
-        
+
         $topic_subscriptions = get_post_meta( $topic_id, '_roost_bbp_subscription', true );
         $forum_subscriptions = get_post_meta( $forum_id, '_roost_bbp_subscription', true );
 
@@ -359,7 +359,7 @@ class Roost_bbPress {
                 $device_tokens[] = $token;
             }
         }
-        
+
         if ( ! empty( $topic_subscriptions ) ) {
             if ( empty( $device_tokens ) ) {
                 $device_tokens = array();
@@ -377,10 +377,10 @@ class Roost_bbPress {
                 $device_tokens[] = $token;
             }
         }
-        
+
         if ( empty( $device_tokens) ) {
             return;
         }
-        Roost_API::send_notification( $message, $topic_url, null, $app_key, $app_secret, $device_tokens );
+        Roost_API::send_notification( $message, $topic_url, null, $app_key, $app_secret, $device_tokens, null );
     }
 }

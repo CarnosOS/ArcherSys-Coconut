@@ -19,8 +19,7 @@
  * Service definition for Dfareporting (v1.3).
  *
  * <p>
- * Lets you create, run and download reports.
- * </p>
+ * Lets you create, run and download reports.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -32,7 +31,8 @@
 class GoogleGAL_Service_Dfareporting extends GoogleGAL_Service
 {
   /** View and manage DoubleClick for Advertisers reports. */
-  const DFAREPORTING = "https://www.googleapis.com/auth/dfareporting";
+  const DFAREPORTING =
+      "https://www.googleapis.com/auth/dfareporting";
 
   public $dimensionValues;
   public $files;
@@ -390,15 +390,13 @@ class GoogleGAL_Service_Dfareporting_DimensionValues_Resource extends GoogleGAL_
    * Retrieves list of report dimension values for a list of filters.
    * (dimensionValues.query)
    *
-   * @param string $profileId
-   * The DFA user profile ID.
+   * @param string $profileId The DFA user profile ID.
    * @param GoogleGAL_DimensionValueRequest $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string pageToken
-   * The value of the nextToken from the previous result page.
-   * @opt_param int maxResults
-   * Maximum number of results to return.
+   * @opt_param string pageToken The value of the nextToken from the previous
+   * result page.
+   * @opt_param int maxResults Maximum number of results to return.
    * @return GoogleGAL_Service_Dfareporting_DimensionValueList
    */
   public function query($profileId, GoogleGAL_Service_Dfareporting_DimensionValueRequest $postBody, $optParams = array())
@@ -423,10 +421,8 @@ class GoogleGAL_Service_Dfareporting_Files_Resource extends GoogleGAL_Service_Re
   /**
    * Retrieves a report file by its report ID and file ID. (files.get)
    *
-   * @param string $reportId
-   * The ID of the report.
-   * @param string $fileId
-   * The ID of the report file.
+   * @param string $reportId The ID of the report.
+   * @param string $fileId The ID of the report file.
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_Dfareporting_DfareportingFile
    */
@@ -436,23 +432,20 @@ class GoogleGAL_Service_Dfareporting_Files_Resource extends GoogleGAL_Service_Re
     $params = array_merge($params, $optParams);
     return $this->call('get', array($params), "GoogleGAL_Service_Dfareporting_DfareportingFile");
   }
+
   /**
    * Lists files for a user profile. (files.listFiles)
    *
-   * @param string $profileId
-   * The DFA profile ID.
+   * @param string $profileId The DFA profile ID.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string sortField
-   * The field by which to sort the list.
-   * @opt_param int maxResults
-   * Maximum number of results to return.
-   * @opt_param string pageToken
-   * The value of the nextToken from the previous result page.
-   * @opt_param string sortOrder
-   * Order of sorted results, default is 'DESCENDING'.
-   * @opt_param string scope
-   * The scope that defines which results are returned, default is 'MINE'.
+   * @opt_param string sortField The field by which to sort the list.
+   * @opt_param int maxResults Maximum number of results to return.
+   * @opt_param string pageToken The value of the nextToken from the previous
+   * result page.
+   * @opt_param string sortOrder Order of sorted results, default is 'DESCENDING'.
+   * @opt_param string scope The scope that defines which results are returned,
+   * default is 'MINE'.
    * @return GoogleGAL_Service_Dfareporting_FileList
    */
   public function listFiles($profileId, $optParams = array())
@@ -477,10 +470,8 @@ class GoogleGAL_Service_Dfareporting_Reports_Resource extends GoogleGAL_Service_
   /**
    * Deletes a report by its ID. (reports.delete)
    *
-   * @param string $profileId
-   * The DFA user profile ID.
-   * @param string $reportId
-   * The ID of the report.
+   * @param string $profileId The DFA user profile ID.
+   * @param string $reportId The ID of the report.
    * @param array $optParams Optional parameters.
    */
   public function delete($profileId, $reportId, $optParams = array())
@@ -489,13 +480,12 @@ class GoogleGAL_Service_Dfareporting_Reports_Resource extends GoogleGAL_Service_
     $params = array_merge($params, $optParams);
     return $this->call('delete', array($params));
   }
+
   /**
    * Retrieves a report by its ID. (reports.get)
    *
-   * @param string $profileId
-   * The DFA user profile ID.
-   * @param string $reportId
-   * The ID of the report.
+   * @param string $profileId The DFA user profile ID.
+   * @param string $reportId The ID of the report.
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_Dfareporting_Report
    */
@@ -505,11 +495,11 @@ class GoogleGAL_Service_Dfareporting_Reports_Resource extends GoogleGAL_Service_
     $params = array_merge($params, $optParams);
     return $this->call('get', array($params), "GoogleGAL_Service_Dfareporting_Report");
   }
+
   /**
    * Creates a report. (reports.insert)
    *
-   * @param string $profileId
-   * The DFA user profile ID.
+   * @param string $profileId The DFA user profile ID.
    * @param GoogleGAL_Report $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_Dfareporting_Report
@@ -520,23 +510,20 @@ class GoogleGAL_Service_Dfareporting_Reports_Resource extends GoogleGAL_Service_
     $params = array_merge($params, $optParams);
     return $this->call('insert', array($params), "GoogleGAL_Service_Dfareporting_Report");
   }
+
   /**
    * Retrieves list of reports. (reports.listReports)
    *
-   * @param string $profileId
-   * The DFA user profile ID.
+   * @param string $profileId The DFA user profile ID.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string sortField
-   * The field by which to sort the list.
-   * @opt_param int maxResults
-   * Maximum number of results to return.
-   * @opt_param string pageToken
-   * The value of the nextToken from the previous result page.
-   * @opt_param string sortOrder
-   * Order of sorted results, default is 'DESCENDING'.
-   * @opt_param string scope
-   * The scope that defines which results are returned, default is 'MINE'.
+   * @opt_param string sortField The field by which to sort the list.
+   * @opt_param int maxResults Maximum number of results to return.
+   * @opt_param string pageToken The value of the nextToken from the previous
+   * result page.
+   * @opt_param string sortOrder Order of sorted results, default is 'DESCENDING'.
+   * @opt_param string scope The scope that defines which results are returned,
+   * default is 'MINE'.
    * @return GoogleGAL_Service_Dfareporting_ReportList
    */
   public function listReports($profileId, $optParams = array())
@@ -545,13 +532,12 @@ class GoogleGAL_Service_Dfareporting_Reports_Resource extends GoogleGAL_Service_
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "GoogleGAL_Service_Dfareporting_ReportList");
   }
+
   /**
    * Updates a report. This method supports patch semantics. (reports.patch)
    *
-   * @param string $profileId
-   * The DFA user profile ID.
-   * @param string $reportId
-   * The ID of the report.
+   * @param string $profileId The DFA user profile ID.
+   * @param string $reportId The ID of the report.
    * @param GoogleGAL_Report $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_Dfareporting_Report
@@ -562,17 +548,16 @@ class GoogleGAL_Service_Dfareporting_Reports_Resource extends GoogleGAL_Service_
     $params = array_merge($params, $optParams);
     return $this->call('patch', array($params), "GoogleGAL_Service_Dfareporting_Report");
   }
+
   /**
    * Runs a report. (reports.run)
    *
-   * @param string $profileId
-   * The DFA profile ID.
-   * @param string $reportId
-   * The ID of the report.
+   * @param string $profileId The DFA profile ID.
+   * @param string $reportId The ID of the report.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param bool synchronous
-   * If set and true, tries to run the report synchronously.
+   * @opt_param bool synchronous If set and true, tries to run the report
+   * synchronously.
    * @return GoogleGAL_Service_Dfareporting_DfareportingFile
    */
   public function run($profileId, $reportId, $optParams = array())
@@ -581,13 +566,12 @@ class GoogleGAL_Service_Dfareporting_Reports_Resource extends GoogleGAL_Service_
     $params = array_merge($params, $optParams);
     return $this->call('run', array($params), "GoogleGAL_Service_Dfareporting_DfareportingFile");
   }
+
   /**
    * Updates a report. (reports.update)
    *
-   * @param string $profileId
-   * The DFA user profile ID.
-   * @param string $reportId
-   * The ID of the report.
+   * @param string $profileId The DFA user profile ID.
+   * @param string $reportId The ID of the report.
    * @param GoogleGAL_Report $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_Dfareporting_Report
@@ -616,8 +600,7 @@ class GoogleGAL_Service_Dfareporting_ReportsCompatibleFields_Resource extends Go
    * sections of a report criteria, given the fields already selected in the input
    * report and user permissions. (compatibleFields.query)
    *
-   * @param string $profileId
-   * The DFA user profile ID.
+   * @param string $profileId The DFA user profile ID.
    * @param GoogleGAL_Report $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_Dfareporting_CompatibleFields
@@ -643,12 +626,9 @@ class GoogleGAL_Service_Dfareporting_ReportsFiles_Resource extends GoogleGAL_Ser
   /**
    * Retrieves a report file. (files.get)
    *
-   * @param string $profileId
-   * The DFA profile ID.
-   * @param string $reportId
-   * The ID of the report.
-   * @param string $fileId
-   * The ID of the report file.
+   * @param string $profileId The DFA profile ID.
+   * @param string $reportId The ID of the report.
+   * @param string $fileId The ID of the report file.
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_Dfareporting_DfareportingFile
    */
@@ -658,23 +638,19 @@ class GoogleGAL_Service_Dfareporting_ReportsFiles_Resource extends GoogleGAL_Ser
     $params = array_merge($params, $optParams);
     return $this->call('get', array($params), "GoogleGAL_Service_Dfareporting_DfareportingFile");
   }
+
   /**
    * Lists files for a report. (files.listReportsFiles)
    *
-   * @param string $profileId
-   * The DFA profile ID.
-   * @param string $reportId
-   * The ID of the parent report.
+   * @param string $profileId The DFA profile ID.
+   * @param string $reportId The ID of the parent report.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string sortField
-   * The field by which to sort the list.
-   * @opt_param int maxResults
-   * Maximum number of results to return.
-   * @opt_param string pageToken
-   * The value of the nextToken from the previous result page.
-   * @opt_param string sortOrder
-   * Order of sorted results, default is 'DESCENDING'.
+   * @opt_param string sortField The field by which to sort the list.
+   * @opt_param int maxResults Maximum number of results to return.
+   * @opt_param string pageToken The value of the nextToken from the previous
+   * result page.
+   * @opt_param string sortOrder Order of sorted results, default is 'DESCENDING'.
    * @return GoogleGAL_Service_Dfareporting_FileList
    */
   public function listReportsFiles($profileId, $reportId, $optParams = array())
@@ -699,8 +675,7 @@ class GoogleGAL_Service_Dfareporting_UserProfiles_Resource extends GoogleGAL_Ser
   /**
    * Gets one user profile by ID. (userProfiles.get)
    *
-   * @param string $profileId
-   * The user profile ID.
+   * @param string $profileId The user profile ID.
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_Dfareporting_UserProfile
    */
@@ -710,6 +685,7 @@ class GoogleGAL_Service_Dfareporting_UserProfiles_Resource extends GoogleGAL_Ser
     $params = array_merge($params, $optParams);
     return $this->call('get', array($params), "GoogleGAL_Service_Dfareporting_UserProfile");
   }
+
   /**
    * Retrieves list of user profiles for a user. (userProfiles.listUserProfiles)
    *
@@ -729,36 +705,35 @@ class GoogleGAL_Service_Dfareporting_UserProfiles_Resource extends GoogleGAL_Ser
 
 class GoogleGAL_Service_Dfareporting_Activities extends GoogleGAL_Collection
 {
+  protected $collection_key = 'metricNames';
+  protected $internal_gapi_mappings = array(
+  );
   protected $filtersType = 'GoogleGAL_Service_Dfareporting_DimensionValue';
   protected $filtersDataType = 'array';
   public $kind;
   public $metricNames;
 
+
   public function setFilters($filters)
   {
     $this->filters = $filters;
   }
-
   public function getFilters()
   {
     return $this->filters;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setMetricNames($metricNames)
   {
     $this->metricNames = $metricNames;
   }
-
   public function getMetricNames()
   {
     return $this->metricNames;
@@ -767,6 +742,8 @@ class GoogleGAL_Service_Dfareporting_Activities extends GoogleGAL_Collection
 
 class GoogleGAL_Service_Dfareporting_CompatibleFields extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   protected $crossDimensionReachReportCompatibleFieldsType = 'GoogleGAL_Service_Dfareporting_CrossDimensionReachReportCompatibleFields';
   protected $crossDimensionReachReportCompatibleFieldsDataType = '';
   protected $floodlightReportCompatibleFieldsType = 'GoogleGAL_Service_Dfareporting_FloodlightReportCompatibleFields';
@@ -779,61 +756,51 @@ class GoogleGAL_Service_Dfareporting_CompatibleFields extends GoogleGAL_Model
   protected $reportCompatibleFieldsType = 'GoogleGAL_Service_Dfareporting_ReportCompatibleFields';
   protected $reportCompatibleFieldsDataType = '';
 
+
   public function setCrossDimensionReachReportCompatibleFields(GoogleGAL_Service_Dfareporting_CrossDimensionReachReportCompatibleFields $crossDimensionReachReportCompatibleFields)
   {
     $this->crossDimensionReachReportCompatibleFields = $crossDimensionReachReportCompatibleFields;
   }
-
   public function getCrossDimensionReachReportCompatibleFields()
   {
     return $this->crossDimensionReachReportCompatibleFields;
   }
-
   public function setFloodlightReportCompatibleFields(GoogleGAL_Service_Dfareporting_FloodlightReportCompatibleFields $floodlightReportCompatibleFields)
   {
     $this->floodlightReportCompatibleFields = $floodlightReportCompatibleFields;
   }
-
   public function getFloodlightReportCompatibleFields()
   {
     return $this->floodlightReportCompatibleFields;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setPathToConversionReportCompatibleFields(GoogleGAL_Service_Dfareporting_PathToConversionReportCompatibleFields $pathToConversionReportCompatibleFields)
   {
     $this->pathToConversionReportCompatibleFields = $pathToConversionReportCompatibleFields;
   }
-
   public function getPathToConversionReportCompatibleFields()
   {
     return $this->pathToConversionReportCompatibleFields;
   }
-
   public function setReachReportCompatibleFields(GoogleGAL_Service_Dfareporting_ReachReportCompatibleFields $reachReportCompatibleFields)
   {
     $this->reachReportCompatibleFields = $reachReportCompatibleFields;
   }
-
   public function getReachReportCompatibleFields()
   {
     return $this->reachReportCompatibleFields;
   }
-
   public function setReportCompatibleFields(GoogleGAL_Service_Dfareporting_ReportCompatibleFields $reportCompatibleFields)
   {
     $this->reportCompatibleFields = $reportCompatibleFields;
   }
-
   public function getReportCompatibleFields()
   {
     return $this->reportCompatibleFields;
@@ -842,6 +809,9 @@ class GoogleGAL_Service_Dfareporting_CompatibleFields extends GoogleGAL_Model
 
 class GoogleGAL_Service_Dfareporting_CrossDimensionReachReportCompatibleFields extends GoogleGAL_Collection
 {
+  protected $collection_key = 'overlapMetrics';
+  protected $internal_gapi_mappings = array(
+  );
   protected $breakdownType = 'GoogleGAL_Service_Dfareporting_Dimension';
   protected $breakdownDataType = 'array';
   protected $dimensionFiltersType = 'GoogleGAL_Service_Dfareporting_Dimension';
@@ -852,51 +822,43 @@ class GoogleGAL_Service_Dfareporting_CrossDimensionReachReportCompatibleFields e
   protected $overlapMetricsType = 'GoogleGAL_Service_Dfareporting_Metric';
   protected $overlapMetricsDataType = 'array';
 
+
   public function setBreakdown($breakdown)
   {
     $this->breakdown = $breakdown;
   }
-
   public function getBreakdown()
   {
     return $this->breakdown;
   }
-
   public function setDimensionFilters($dimensionFilters)
   {
     $this->dimensionFilters = $dimensionFilters;
   }
-
   public function getDimensionFilters()
   {
     return $this->dimensionFilters;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setMetrics($metrics)
   {
     $this->metrics = $metrics;
   }
-
   public function getMetrics()
   {
     return $this->metrics;
   }
-
   public function setOverlapMetrics($overlapMetrics)
   {
     $this->overlapMetrics = $overlapMetrics;
   }
-
   public function getOverlapMetrics()
   {
     return $this->overlapMetrics;
@@ -905,25 +867,26 @@ class GoogleGAL_Service_Dfareporting_CrossDimensionReachReportCompatibleFields e
 
 class GoogleGAL_Service_Dfareporting_CustomRichMediaEvents extends GoogleGAL_Collection
 {
+  protected $collection_key = 'filteredEventIds';
+  protected $internal_gapi_mappings = array(
+  );
   protected $filteredEventIdsType = 'GoogleGAL_Service_Dfareporting_DimensionValue';
   protected $filteredEventIdsDataType = 'array';
   public $kind;
+
 
   public function setFilteredEventIds($filteredEventIds)
   {
     $this->filteredEventIds = $filteredEventIds;
   }
-
   public function getFilteredEventIds()
   {
     return $this->filteredEventIds;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
@@ -932,46 +895,42 @@ class GoogleGAL_Service_Dfareporting_CustomRichMediaEvents extends GoogleGAL_Col
 
 class GoogleGAL_Service_Dfareporting_DateRange extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $endDate;
   public $kind;
   public $relativeDateRange;
   public $startDate;
 
+
   public function setEndDate($endDate)
   {
     $this->endDate = $endDate;
   }
-
   public function getEndDate()
   {
     return $this->endDate;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setRelativeDateRange($relativeDateRange)
   {
     $this->relativeDateRange = $relativeDateRange;
   }
-
   public function getRelativeDateRange()
   {
     return $this->relativeDateRange;
   }
-
   public function setStartDate($startDate)
   {
     $this->startDate = $startDate;
   }
-
   public function getStartDate()
   {
     return $this->startDate;
@@ -980,6 +939,8 @@ class GoogleGAL_Service_Dfareporting_DateRange extends GoogleGAL_Model
 
 class GoogleGAL_Service_Dfareporting_DfareportingFile extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   protected $dateRangeType = 'GoogleGAL_Service_Dfareporting_DateRange';
   protected $dateRangeDataType = '';
   public $etag;
@@ -993,101 +954,83 @@ class GoogleGAL_Service_Dfareporting_DfareportingFile extends GoogleGAL_Model
   protected $urlsType = 'GoogleGAL_Service_Dfareporting_DfareportingFileUrls';
   protected $urlsDataType = '';
 
+
   public function setDateRange(GoogleGAL_Service_Dfareporting_DateRange $dateRange)
   {
     $this->dateRange = $dateRange;
   }
-
   public function getDateRange()
   {
     return $this->dateRange;
   }
-
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
-
   public function getEtag()
   {
     return $this->etag;
   }
-
   public function setFileName($fileName)
   {
     $this->fileName = $fileName;
   }
-
   public function getFileName()
   {
     return $this->fileName;
   }
-
   public function setFormat($format)
   {
     $this->format = $format;
   }
-
   public function getFormat()
   {
     return $this->format;
   }
-
   public function setId($id)
   {
     $this->id = $id;
   }
-
   public function getId()
   {
     return $this->id;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setLastModifiedTime($lastModifiedTime)
   {
     $this->lastModifiedTime = $lastModifiedTime;
   }
-
   public function getLastModifiedTime()
   {
     return $this->lastModifiedTime;
   }
-
   public function setReportId($reportId)
   {
     $this->reportId = $reportId;
   }
-
   public function getReportId()
   {
     return $this->reportId;
   }
-
   public function setStatus($status)
   {
     $this->status = $status;
   }
-
   public function getStatus()
   {
     return $this->status;
   }
-
   public function setUrls(GoogleGAL_Service_Dfareporting_DfareportingFileUrls $urls)
   {
     $this->urls = $urls;
   }
-
   public function getUrls()
   {
     return $this->urls;
@@ -1096,24 +1039,24 @@ class GoogleGAL_Service_Dfareporting_DfareportingFile extends GoogleGAL_Model
 
 class GoogleGAL_Service_Dfareporting_DfareportingFileUrls extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $apiUrl;
   public $browserUrl;
+
 
   public function setApiUrl($apiUrl)
   {
     $this->apiUrl = $apiUrl;
   }
-
   public function getApiUrl()
   {
     return $this->apiUrl;
   }
-
   public function setBrowserUrl($browserUrl)
   {
     $this->browserUrl = $browserUrl;
   }
-
   public function getBrowserUrl()
   {
     return $this->browserUrl;
@@ -1122,24 +1065,24 @@ class GoogleGAL_Service_Dfareporting_DfareportingFileUrls extends GoogleGAL_Mode
 
 class GoogleGAL_Service_Dfareporting_Dimension extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $kind;
   public $name;
+
 
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setName($name)
   {
     $this->name = $name;
   }
-
   public function getName()
   {
     return $this->name;
@@ -1148,35 +1091,33 @@ class GoogleGAL_Service_Dfareporting_Dimension extends GoogleGAL_Model
 
 class GoogleGAL_Service_Dfareporting_DimensionFilter extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $dimensionName;
   public $kind;
   public $value;
+
 
   public function setDimensionName($dimensionName)
   {
     $this->dimensionName = $dimensionName;
   }
-
   public function getDimensionName()
   {
     return $this->dimensionName;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setValue($value)
   {
     $this->value = $value;
   }
-
   public function getValue()
   {
     return $this->value;
@@ -1185,6 +1126,8 @@ class GoogleGAL_Service_Dfareporting_DimensionFilter extends GoogleGAL_Model
 
 class GoogleGAL_Service_Dfareporting_DimensionValue extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $dimensionName;
   public $etag;
   public $id;
@@ -1192,61 +1135,51 @@ class GoogleGAL_Service_Dfareporting_DimensionValue extends GoogleGAL_Model
   public $matchType;
   public $value;
 
+
   public function setDimensionName($dimensionName)
   {
     $this->dimensionName = $dimensionName;
   }
-
   public function getDimensionName()
   {
     return $this->dimensionName;
   }
-
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
-
   public function getEtag()
   {
     return $this->etag;
   }
-
   public function setId($id)
   {
     $this->id = $id;
   }
-
   public function getId()
   {
     return $this->id;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setMatchType($matchType)
   {
     $this->matchType = $matchType;
   }
-
   public function getMatchType()
   {
     return $this->matchType;
   }
-
   public function setValue($value)
   {
     $this->value = $value;
   }
-
   public function getValue()
   {
     return $this->value;
@@ -1255,47 +1188,44 @@ class GoogleGAL_Service_Dfareporting_DimensionValue extends GoogleGAL_Model
 
 class GoogleGAL_Service_Dfareporting_DimensionValueList extends GoogleGAL_Collection
 {
+  protected $collection_key = 'items';
+  protected $internal_gapi_mappings = array(
+  );
   public $etag;
   protected $itemsType = 'GoogleGAL_Service_Dfareporting_DimensionValue';
   protected $itemsDataType = 'array';
   public $kind;
   public $nextPageToken;
 
+
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
-
   public function getEtag()
   {
     return $this->etag;
   }
-
   public function setItems($items)
   {
     $this->items = $items;
   }
-
   public function getItems()
   {
     return $this->items;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-
   public function getNextPageToken()
   {
     return $this->nextPageToken;
@@ -1304,6 +1234,9 @@ class GoogleGAL_Service_Dfareporting_DimensionValueList extends GoogleGAL_Collec
 
 class GoogleGAL_Service_Dfareporting_DimensionValueRequest extends GoogleGAL_Collection
 {
+  protected $collection_key = 'filters';
+  protected $internal_gapi_mappings = array(
+  );
   public $dimensionName;
   public $endDate;
   protected $filtersType = 'GoogleGAL_Service_Dfareporting_DimensionFilter';
@@ -1311,51 +1244,43 @@ class GoogleGAL_Service_Dfareporting_DimensionValueRequest extends GoogleGAL_Col
   public $kind;
   public $startDate;
 
+
   public function setDimensionName($dimensionName)
   {
     $this->dimensionName = $dimensionName;
   }
-
   public function getDimensionName()
   {
     return $this->dimensionName;
   }
-
   public function setEndDate($endDate)
   {
     $this->endDate = $endDate;
   }
-
   public function getEndDate()
   {
     return $this->endDate;
   }
-
   public function setFilters($filters)
   {
     $this->filters = $filters;
   }
-
   public function getFilters()
   {
     return $this->filters;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setStartDate($startDate)
   {
     $this->startDate = $startDate;
   }
-
   public function getStartDate()
   {
     return $this->startDate;
@@ -1364,47 +1289,44 @@ class GoogleGAL_Service_Dfareporting_DimensionValueRequest extends GoogleGAL_Col
 
 class GoogleGAL_Service_Dfareporting_FileList extends GoogleGAL_Collection
 {
+  protected $collection_key = 'items';
+  protected $internal_gapi_mappings = array(
+  );
   public $etag;
   protected $itemsType = 'GoogleGAL_Service_Dfareporting_DfareportingFile';
   protected $itemsDataType = 'array';
   public $kind;
   public $nextPageToken;
 
+
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
-
   public function getEtag()
   {
     return $this->etag;
   }
-
   public function setItems($items)
   {
     $this->items = $items;
   }
-
   public function getItems()
   {
     return $this->items;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-
   public function getNextPageToken()
   {
     return $this->nextPageToken;
@@ -1413,6 +1335,9 @@ class GoogleGAL_Service_Dfareporting_FileList extends GoogleGAL_Collection
 
 class GoogleGAL_Service_Dfareporting_FloodlightReportCompatibleFields extends GoogleGAL_Collection
 {
+  protected $collection_key = 'metrics';
+  protected $internal_gapi_mappings = array(
+  );
   protected $dimensionFiltersType = 'GoogleGAL_Service_Dfareporting_Dimension';
   protected $dimensionFiltersDataType = 'array';
   protected $dimensionsType = 'GoogleGAL_Service_Dfareporting_Dimension';
@@ -1421,41 +1346,35 @@ class GoogleGAL_Service_Dfareporting_FloodlightReportCompatibleFields extends Go
   protected $metricsType = 'GoogleGAL_Service_Dfareporting_Metric';
   protected $metricsDataType = 'array';
 
+
   public function setDimensionFilters($dimensionFilters)
   {
     $this->dimensionFilters = $dimensionFilters;
   }
-
   public function getDimensionFilters()
   {
     return $this->dimensionFilters;
   }
-
   public function setDimensions($dimensions)
   {
     $this->dimensions = $dimensions;
   }
-
   public function getDimensions()
   {
     return $this->dimensions;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setMetrics($metrics)
   {
     $this->metrics = $metrics;
   }
-
   public function getMetrics()
   {
     return $this->metrics;
@@ -1464,24 +1383,24 @@ class GoogleGAL_Service_Dfareporting_FloodlightReportCompatibleFields extends Go
 
 class GoogleGAL_Service_Dfareporting_Metric extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $kind;
   public $name;
+
 
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setName($name)
   {
     $this->name = $name;
   }
-
   public function getName()
   {
     return $this->name;
@@ -1490,6 +1409,9 @@ class GoogleGAL_Service_Dfareporting_Metric extends GoogleGAL_Model
 
 class GoogleGAL_Service_Dfareporting_PathToConversionReportCompatibleFields extends GoogleGAL_Collection
 {
+  protected $collection_key = 'perInteractionDimensions';
+  protected $internal_gapi_mappings = array(
+  );
   protected $conversionDimensionsType = 'GoogleGAL_Service_Dfareporting_Dimension';
   protected $conversionDimensionsDataType = 'array';
   protected $customFloodlightVariablesType = 'GoogleGAL_Service_Dfareporting_Dimension';
@@ -1500,51 +1422,43 @@ class GoogleGAL_Service_Dfareporting_PathToConversionReportCompatibleFields exte
   protected $perInteractionDimensionsType = 'GoogleGAL_Service_Dfareporting_Dimension';
   protected $perInteractionDimensionsDataType = 'array';
 
+
   public function setConversionDimensions($conversionDimensions)
   {
     $this->conversionDimensions = $conversionDimensions;
   }
-
   public function getConversionDimensions()
   {
     return $this->conversionDimensions;
   }
-
   public function setCustomFloodlightVariables($customFloodlightVariables)
   {
     $this->customFloodlightVariables = $customFloodlightVariables;
   }
-
   public function getCustomFloodlightVariables()
   {
     return $this->customFloodlightVariables;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setMetrics($metrics)
   {
     $this->metrics = $metrics;
   }
-
   public function getMetrics()
   {
     return $this->metrics;
   }
-
   public function setPerInteractionDimensions($perInteractionDimensions)
   {
     $this->perInteractionDimensions = $perInteractionDimensions;
   }
-
   public function getPerInteractionDimensions()
   {
     return $this->perInteractionDimensions;
@@ -1553,6 +1467,9 @@ class GoogleGAL_Service_Dfareporting_PathToConversionReportCompatibleFields exte
 
 class GoogleGAL_Service_Dfareporting_ReachReportCompatibleFields extends GoogleGAL_Collection
 {
+  protected $collection_key = 'reachByFrequencyMetrics';
+  protected $internal_gapi_mappings = array(
+  );
   protected $dimensionFiltersType = 'GoogleGAL_Service_Dfareporting_Dimension';
   protected $dimensionFiltersDataType = 'array';
   protected $dimensionsType = 'GoogleGAL_Service_Dfareporting_Dimension';
@@ -1565,61 +1482,51 @@ class GoogleGAL_Service_Dfareporting_ReachReportCompatibleFields extends GoogleG
   protected $reachByFrequencyMetricsType = 'GoogleGAL_Service_Dfareporting_Metric';
   protected $reachByFrequencyMetricsDataType = 'array';
 
+
   public function setDimensionFilters($dimensionFilters)
   {
     $this->dimensionFilters = $dimensionFilters;
   }
-
   public function getDimensionFilters()
   {
     return $this->dimensionFilters;
   }
-
   public function setDimensions($dimensions)
   {
     $this->dimensions = $dimensions;
   }
-
   public function getDimensions()
   {
     return $this->dimensions;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setMetrics($metrics)
   {
     $this->metrics = $metrics;
   }
-
   public function getMetrics()
   {
     return $this->metrics;
   }
-
   public function setPivotedActivityMetrics($pivotedActivityMetrics)
   {
     $this->pivotedActivityMetrics = $pivotedActivityMetrics;
   }
-
   public function getPivotedActivityMetrics()
   {
     return $this->pivotedActivityMetrics;
   }
-
   public function setReachByFrequencyMetrics($reachByFrequencyMetrics)
   {
     $this->reachByFrequencyMetrics = $reachByFrequencyMetrics;
   }
-
   public function getReachByFrequencyMetrics()
   {
     return $this->reachByFrequencyMetrics;
@@ -1628,35 +1535,33 @@ class GoogleGAL_Service_Dfareporting_ReachReportCompatibleFields extends GoogleG
 
 class GoogleGAL_Service_Dfareporting_Recipient extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $deliveryType;
   public $email;
   public $kind;
+
 
   public function setDeliveryType($deliveryType)
   {
     $this->deliveryType = $deliveryType;
   }
-
   public function getDeliveryType()
   {
     return $this->deliveryType;
   }
-
   public function setEmail($email)
   {
     $this->email = $email;
   }
-
   public function getEmail()
   {
     return $this->email;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
@@ -1665,6 +1570,8 @@ class GoogleGAL_Service_Dfareporting_Recipient extends GoogleGAL_Model
 
 class GoogleGAL_Service_Dfareporting_Report extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $accountId;
   protected $activeGrpCriteriaType = 'GoogleGAL_Service_Dfareporting_ReportActiveGrpCriteria';
   protected $activeGrpCriteriaDataType = '';
@@ -1693,191 +1600,155 @@ class GoogleGAL_Service_Dfareporting_Report extends GoogleGAL_Model
   public $subAccountId;
   public $type;
 
+
   public function setAccountId($accountId)
   {
     $this->accountId = $accountId;
   }
-
   public function getAccountId()
   {
     return $this->accountId;
   }
-
   public function setActiveGrpCriteria(GoogleGAL_Service_Dfareporting_ReportActiveGrpCriteria $activeGrpCriteria)
   {
     $this->activeGrpCriteria = $activeGrpCriteria;
   }
-
   public function getActiveGrpCriteria()
   {
     return $this->activeGrpCriteria;
   }
-
   public function setCriteria(GoogleGAL_Service_Dfareporting_ReportCriteria $criteria)
   {
     $this->criteria = $criteria;
   }
-
   public function getCriteria()
   {
     return $this->criteria;
   }
-
   public function setCrossDimensionReachCriteria(GoogleGAL_Service_Dfareporting_ReportCrossDimensionReachCriteria $crossDimensionReachCriteria)
   {
     $this->crossDimensionReachCriteria = $crossDimensionReachCriteria;
   }
-
   public function getCrossDimensionReachCriteria()
   {
     return $this->crossDimensionReachCriteria;
   }
-
   public function setDelivery(GoogleGAL_Service_Dfareporting_ReportDelivery $delivery)
   {
     $this->delivery = $delivery;
   }
-
   public function getDelivery()
   {
     return $this->delivery;
   }
-
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
-
   public function getEtag()
   {
     return $this->etag;
   }
-
   public function setFileName($fileName)
   {
     $this->fileName = $fileName;
   }
-
   public function getFileName()
   {
     return $this->fileName;
   }
-
   public function setFloodlightCriteria(GoogleGAL_Service_Dfareporting_ReportFloodlightCriteria $floodlightCriteria)
   {
     $this->floodlightCriteria = $floodlightCriteria;
   }
-
   public function getFloodlightCriteria()
   {
     return $this->floodlightCriteria;
   }
-
   public function setFormat($format)
   {
     $this->format = $format;
   }
-
   public function getFormat()
   {
     return $this->format;
   }
-
   public function setId($id)
   {
     $this->id = $id;
   }
-
   public function getId()
   {
     return $this->id;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setLastModifiedTime($lastModifiedTime)
   {
     $this->lastModifiedTime = $lastModifiedTime;
   }
-
   public function getLastModifiedTime()
   {
     return $this->lastModifiedTime;
   }
-
   public function setName($name)
   {
     $this->name = $name;
   }
-
   public function getName()
   {
     return $this->name;
   }
-
   public function setOwnerProfileId($ownerProfileId)
   {
     $this->ownerProfileId = $ownerProfileId;
   }
-
   public function getOwnerProfileId()
   {
     return $this->ownerProfileId;
   }
-
   public function setPathToConversionCriteria(GoogleGAL_Service_Dfareporting_ReportPathToConversionCriteria $pathToConversionCriteria)
   {
     $this->pathToConversionCriteria = $pathToConversionCriteria;
   }
-
   public function getPathToConversionCriteria()
   {
     return $this->pathToConversionCriteria;
   }
-
   public function setReachCriteria(GoogleGAL_Service_Dfareporting_ReportReachCriteria $reachCriteria)
   {
     $this->reachCriteria = $reachCriteria;
   }
-
   public function getReachCriteria()
   {
     return $this->reachCriteria;
   }
-
   public function setSchedule(GoogleGAL_Service_Dfareporting_ReportSchedule $schedule)
   {
     $this->schedule = $schedule;
   }
-
   public function getSchedule()
   {
     return $this->schedule;
   }
-
   public function setSubAccountId($subAccountId)
   {
     $this->subAccountId = $subAccountId;
   }
-
   public function getSubAccountId()
   {
     return $this->subAccountId;
   }
-
   public function setType($type)
   {
     $this->type = $type;
   }
-
   public function getType()
   {
     return $this->type;
@@ -1886,6 +1757,9 @@ class GoogleGAL_Service_Dfareporting_Report extends GoogleGAL_Model
 
 class GoogleGAL_Service_Dfareporting_ReportActiveGrpCriteria extends GoogleGAL_Collection
 {
+  protected $collection_key = 'metricNames';
+  protected $internal_gapi_mappings = array(
+  );
   protected $dateRangeType = 'GoogleGAL_Service_Dfareporting_DateRange';
   protected $dateRangeDataType = '';
   protected $dimensionFiltersType = 'GoogleGAL_Service_Dfareporting_DimensionValue';
@@ -1894,41 +1768,35 @@ class GoogleGAL_Service_Dfareporting_ReportActiveGrpCriteria extends GoogleGAL_C
   protected $dimensionsDataType = 'array';
   public $metricNames;
 
+
   public function setDateRange(GoogleGAL_Service_Dfareporting_DateRange $dateRange)
   {
     $this->dateRange = $dateRange;
   }
-
   public function getDateRange()
   {
     return $this->dateRange;
   }
-
   public function setDimensionFilters($dimensionFilters)
   {
     $this->dimensionFilters = $dimensionFilters;
   }
-
   public function getDimensionFilters()
   {
     return $this->dimensionFilters;
   }
-
   public function setDimensions($dimensions)
   {
     $this->dimensions = $dimensions;
   }
-
   public function getDimensions()
   {
     return $this->dimensions;
   }
-
   public function setMetricNames($metricNames)
   {
     $this->metricNames = $metricNames;
   }
-
   public function getMetricNames()
   {
     return $this->metricNames;
@@ -1937,6 +1805,9 @@ class GoogleGAL_Service_Dfareporting_ReportActiveGrpCriteria extends GoogleGAL_C
 
 class GoogleGAL_Service_Dfareporting_ReportCompatibleFields extends GoogleGAL_Collection
 {
+  protected $collection_key = 'pivotedActivityMetrics';
+  protected $internal_gapi_mappings = array(
+  );
   protected $dimensionFiltersType = 'GoogleGAL_Service_Dfareporting_Dimension';
   protected $dimensionFiltersDataType = 'array';
   protected $dimensionsType = 'GoogleGAL_Service_Dfareporting_Dimension';
@@ -1947,51 +1818,43 @@ class GoogleGAL_Service_Dfareporting_ReportCompatibleFields extends GoogleGAL_Co
   protected $pivotedActivityMetricsType = 'GoogleGAL_Service_Dfareporting_Metric';
   protected $pivotedActivityMetricsDataType = 'array';
 
+
   public function setDimensionFilters($dimensionFilters)
   {
     $this->dimensionFilters = $dimensionFilters;
   }
-
   public function getDimensionFilters()
   {
     return $this->dimensionFilters;
   }
-
   public function setDimensions($dimensions)
   {
     $this->dimensions = $dimensions;
   }
-
   public function getDimensions()
   {
     return $this->dimensions;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setMetrics($metrics)
   {
     $this->metrics = $metrics;
   }
-
   public function getMetrics()
   {
     return $this->metrics;
   }
-
   public function setPivotedActivityMetrics($pivotedActivityMetrics)
   {
     $this->pivotedActivityMetrics = $pivotedActivityMetrics;
   }
-
   public function getPivotedActivityMetrics()
   {
     return $this->pivotedActivityMetrics;
@@ -2000,6 +1863,9 @@ class GoogleGAL_Service_Dfareporting_ReportCompatibleFields extends GoogleGAL_Co
 
 class GoogleGAL_Service_Dfareporting_ReportCriteria extends GoogleGAL_Collection
 {
+  protected $collection_key = 'metricNames';
+  protected $internal_gapi_mappings = array(
+  );
   protected $activitiesType = 'GoogleGAL_Service_Dfareporting_Activities';
   protected $activitiesDataType = '';
   protected $customRichMediaEventsType = 'GoogleGAL_Service_Dfareporting_CustomRichMediaEvents';
@@ -2012,61 +1878,51 @@ class GoogleGAL_Service_Dfareporting_ReportCriteria extends GoogleGAL_Collection
   protected $dimensionsDataType = 'array';
   public $metricNames;
 
+
   public function setActivities(GoogleGAL_Service_Dfareporting_Activities $activities)
   {
     $this->activities = $activities;
   }
-
   public function getActivities()
   {
     return $this->activities;
   }
-
   public function setCustomRichMediaEvents(GoogleGAL_Service_Dfareporting_CustomRichMediaEvents $customRichMediaEvents)
   {
     $this->customRichMediaEvents = $customRichMediaEvents;
   }
-
   public function getCustomRichMediaEvents()
   {
     return $this->customRichMediaEvents;
   }
-
   public function setDateRange(GoogleGAL_Service_Dfareporting_DateRange $dateRange)
   {
     $this->dateRange = $dateRange;
   }
-
   public function getDateRange()
   {
     return $this->dateRange;
   }
-
   public function setDimensionFilters($dimensionFilters)
   {
     $this->dimensionFilters = $dimensionFilters;
   }
-
   public function getDimensionFilters()
   {
     return $this->dimensionFilters;
   }
-
   public function setDimensions($dimensions)
   {
     $this->dimensions = $dimensions;
   }
-
   public function getDimensions()
   {
     return $this->dimensions;
   }
-
   public function setMetricNames($metricNames)
   {
     $this->metricNames = $metricNames;
   }
-
   public function getMetricNames()
   {
     return $this->metricNames;
@@ -2075,6 +1931,9 @@ class GoogleGAL_Service_Dfareporting_ReportCriteria extends GoogleGAL_Collection
 
 class GoogleGAL_Service_Dfareporting_ReportCrossDimensionReachCriteria extends GoogleGAL_Collection
 {
+  protected $collection_key = 'overlapMetricNames';
+  protected $internal_gapi_mappings = array(
+  );
   protected $breakdownType = 'GoogleGAL_Service_Dfareporting_SortedDimension';
   protected $breakdownDataType = 'array';
   protected $dateRangeType = 'GoogleGAL_Service_Dfareporting_DateRange';
@@ -2086,71 +1945,59 @@ class GoogleGAL_Service_Dfareporting_ReportCrossDimensionReachCriteria extends G
   public $overlapMetricNames;
   public $pivoted;
 
+
   public function setBreakdown($breakdown)
   {
     $this->breakdown = $breakdown;
   }
-
   public function getBreakdown()
   {
     return $this->breakdown;
   }
-
   public function setDateRange(GoogleGAL_Service_Dfareporting_DateRange $dateRange)
   {
     $this->dateRange = $dateRange;
   }
-
   public function getDateRange()
   {
     return $this->dateRange;
   }
-
   public function setDimension($dimension)
   {
     $this->dimension = $dimension;
   }
-
   public function getDimension()
   {
     return $this->dimension;
   }
-
   public function setDimensionFilters($dimensionFilters)
   {
     $this->dimensionFilters = $dimensionFilters;
   }
-
   public function getDimensionFilters()
   {
     return $this->dimensionFilters;
   }
-
   public function setMetricNames($metricNames)
   {
     $this->metricNames = $metricNames;
   }
-
   public function getMetricNames()
   {
     return $this->metricNames;
   }
-
   public function setOverlapMetricNames($overlapMetricNames)
   {
     $this->overlapMetricNames = $overlapMetricNames;
   }
-
   public function getOverlapMetricNames()
   {
     return $this->overlapMetricNames;
   }
-
   public function setPivoted($pivoted)
   {
     $this->pivoted = $pivoted;
   }
-
   public function getPivoted()
   {
     return $this->pivoted;
@@ -2159,47 +2006,44 @@ class GoogleGAL_Service_Dfareporting_ReportCrossDimensionReachCriteria extends G
 
 class GoogleGAL_Service_Dfareporting_ReportDelivery extends GoogleGAL_Collection
 {
+  protected $collection_key = 'recipients';
+  protected $internal_gapi_mappings = array(
+  );
   public $emailOwner;
   public $emailOwnerDeliveryType;
   public $message;
   protected $recipientsType = 'GoogleGAL_Service_Dfareporting_Recipient';
   protected $recipientsDataType = 'array';
 
+
   public function setEmailOwner($emailOwner)
   {
     $this->emailOwner = $emailOwner;
   }
-
   public function getEmailOwner()
   {
     return $this->emailOwner;
   }
-
   public function setEmailOwnerDeliveryType($emailOwnerDeliveryType)
   {
     $this->emailOwnerDeliveryType = $emailOwnerDeliveryType;
   }
-
   public function getEmailOwnerDeliveryType()
   {
     return $this->emailOwnerDeliveryType;
   }
-
   public function setMessage($message)
   {
     $this->message = $message;
   }
-
   public function getMessage()
   {
     return $this->message;
   }
-
   public function setRecipients($recipients)
   {
     $this->recipients = $recipients;
   }
-
   public function getRecipients()
   {
     return $this->recipients;
@@ -2208,6 +2052,9 @@ class GoogleGAL_Service_Dfareporting_ReportDelivery extends GoogleGAL_Collection
 
 class GoogleGAL_Service_Dfareporting_ReportFloodlightCriteria extends GoogleGAL_Collection
 {
+  protected $collection_key = 'metricNames';
+  protected $internal_gapi_mappings = array(
+  );
   protected $customRichMediaEventsType = 'GoogleGAL_Service_Dfareporting_DimensionValue';
   protected $customRichMediaEventsDataType = 'array';
   protected $dateRangeType = 'GoogleGAL_Service_Dfareporting_DateRange';
@@ -2222,71 +2069,59 @@ class GoogleGAL_Service_Dfareporting_ReportFloodlightCriteria extends GoogleGAL_
   protected $reportPropertiesType = 'GoogleGAL_Service_Dfareporting_ReportFloodlightCriteriaReportProperties';
   protected $reportPropertiesDataType = '';
 
+
   public function setCustomRichMediaEvents($customRichMediaEvents)
   {
     $this->customRichMediaEvents = $customRichMediaEvents;
   }
-
   public function getCustomRichMediaEvents()
   {
     return $this->customRichMediaEvents;
   }
-
   public function setDateRange(GoogleGAL_Service_Dfareporting_DateRange $dateRange)
   {
     $this->dateRange = $dateRange;
   }
-
   public function getDateRange()
   {
     return $this->dateRange;
   }
-
   public function setDimensionFilters($dimensionFilters)
   {
     $this->dimensionFilters = $dimensionFilters;
   }
-
   public function getDimensionFilters()
   {
     return $this->dimensionFilters;
   }
-
   public function setDimensions($dimensions)
   {
     $this->dimensions = $dimensions;
   }
-
   public function getDimensions()
   {
     return $this->dimensions;
   }
-
   public function setFloodlightConfigId(GoogleGAL_Service_Dfareporting_DimensionValue $floodlightConfigId)
   {
     $this->floodlightConfigId = $floodlightConfigId;
   }
-
   public function getFloodlightConfigId()
   {
     return $this->floodlightConfigId;
   }
-
   public function setMetricNames($metricNames)
   {
     $this->metricNames = $metricNames;
   }
-
   public function getMetricNames()
   {
     return $this->metricNames;
   }
-
   public function setReportProperties(GoogleGAL_Service_Dfareporting_ReportFloodlightCriteriaReportProperties $reportProperties)
   {
     $this->reportProperties = $reportProperties;
   }
-
   public function getReportProperties()
   {
     return $this->reportProperties;
@@ -2295,35 +2130,33 @@ class GoogleGAL_Service_Dfareporting_ReportFloodlightCriteria extends GoogleGAL_
 
 class GoogleGAL_Service_Dfareporting_ReportFloodlightCriteriaReportProperties extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $includeAttributedIPConversions;
   public $includeUnattributedCookieConversions;
   public $includeUnattributedIPConversions;
+
 
   public function setIncludeAttributedIPConversions($includeAttributedIPConversions)
   {
     $this->includeAttributedIPConversions = $includeAttributedIPConversions;
   }
-
   public function getIncludeAttributedIPConversions()
   {
     return $this->includeAttributedIPConversions;
   }
-
   public function setIncludeUnattributedCookieConversions($includeUnattributedCookieConversions)
   {
     $this->includeUnattributedCookieConversions = $includeUnattributedCookieConversions;
   }
-
   public function getIncludeUnattributedCookieConversions()
   {
     return $this->includeUnattributedCookieConversions;
   }
-
   public function setIncludeUnattributedIPConversions($includeUnattributedIPConversions)
   {
     $this->includeUnattributedIPConversions = $includeUnattributedIPConversions;
   }
-
   public function getIncludeUnattributedIPConversions()
   {
     return $this->includeUnattributedIPConversions;
@@ -2332,47 +2165,44 @@ class GoogleGAL_Service_Dfareporting_ReportFloodlightCriteriaReportProperties ex
 
 class GoogleGAL_Service_Dfareporting_ReportList extends GoogleGAL_Collection
 {
+  protected $collection_key = 'items';
+  protected $internal_gapi_mappings = array(
+  );
   public $etag;
   protected $itemsType = 'GoogleGAL_Service_Dfareporting_Report';
   protected $itemsDataType = 'array';
   public $kind;
   public $nextPageToken;
 
+
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
-
   public function getEtag()
   {
     return $this->etag;
   }
-
   public function setItems($items)
   {
     $this->items = $items;
   }
-
   public function getItems()
   {
     return $this->items;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-
   public function getNextPageToken()
   {
     return $this->nextPageToken;
@@ -2381,6 +2211,9 @@ class GoogleGAL_Service_Dfareporting_ReportList extends GoogleGAL_Collection
 
 class GoogleGAL_Service_Dfareporting_ReportPathToConversionCriteria extends GoogleGAL_Collection
 {
+  protected $collection_key = 'perInteractionDimensions';
+  protected $internal_gapi_mappings = array(
+  );
   protected $activityFiltersType = 'GoogleGAL_Service_Dfareporting_DimensionValue';
   protected $activityFiltersDataType = 'array';
   protected $conversionDimensionsType = 'GoogleGAL_Service_Dfareporting_SortedDimension';
@@ -2399,91 +2232,75 @@ class GoogleGAL_Service_Dfareporting_ReportPathToConversionCriteria extends Goog
   protected $reportPropertiesType = 'GoogleGAL_Service_Dfareporting_ReportPathToConversionCriteriaReportProperties';
   protected $reportPropertiesDataType = '';
 
+
   public function setActivityFilters($activityFilters)
   {
     $this->activityFilters = $activityFilters;
   }
-
   public function getActivityFilters()
   {
     return $this->activityFilters;
   }
-
   public function setConversionDimensions($conversionDimensions)
   {
     $this->conversionDimensions = $conversionDimensions;
   }
-
   public function getConversionDimensions()
   {
     return $this->conversionDimensions;
   }
-
   public function setCustomFloodlightVariables($customFloodlightVariables)
   {
     $this->customFloodlightVariables = $customFloodlightVariables;
   }
-
   public function getCustomFloodlightVariables()
   {
     return $this->customFloodlightVariables;
   }
-
   public function setCustomRichMediaEvents($customRichMediaEvents)
   {
     $this->customRichMediaEvents = $customRichMediaEvents;
   }
-
   public function getCustomRichMediaEvents()
   {
     return $this->customRichMediaEvents;
   }
-
   public function setDateRange(GoogleGAL_Service_Dfareporting_DateRange $dateRange)
   {
     $this->dateRange = $dateRange;
   }
-
   public function getDateRange()
   {
     return $this->dateRange;
   }
-
   public function setFloodlightConfigId(GoogleGAL_Service_Dfareporting_DimensionValue $floodlightConfigId)
   {
     $this->floodlightConfigId = $floodlightConfigId;
   }
-
   public function getFloodlightConfigId()
   {
     return $this->floodlightConfigId;
   }
-
   public function setMetricNames($metricNames)
   {
     $this->metricNames = $metricNames;
   }
-
   public function getMetricNames()
   {
     return $this->metricNames;
   }
-
   public function setPerInteractionDimensions($perInteractionDimensions)
   {
     $this->perInteractionDimensions = $perInteractionDimensions;
   }
-
   public function getPerInteractionDimensions()
   {
     return $this->perInteractionDimensions;
   }
-
   public function setReportProperties(GoogleGAL_Service_Dfareporting_ReportPathToConversionCriteriaReportProperties $reportProperties)
   {
     $this->reportProperties = $reportProperties;
   }
-
   public function getReportProperties()
   {
     return $this->reportProperties;
@@ -2492,6 +2309,8 @@ class GoogleGAL_Service_Dfareporting_ReportPathToConversionCriteria extends Goog
 
 class GoogleGAL_Service_Dfareporting_ReportPathToConversionCriteriaReportProperties extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $clicksLookbackWindow;
   public $impressionsLookbackWindow;
   public $includeAttributedIPConversions;
@@ -2502,91 +2321,75 @@ class GoogleGAL_Service_Dfareporting_ReportPathToConversionCriteriaReportPropert
   public $maximumInteractionGap;
   public $pivotOnInteractionPath;
 
+
   public function setClicksLookbackWindow($clicksLookbackWindow)
   {
     $this->clicksLookbackWindow = $clicksLookbackWindow;
   }
-
   public function getClicksLookbackWindow()
   {
     return $this->clicksLookbackWindow;
   }
-
   public function setImpressionsLookbackWindow($impressionsLookbackWindow)
   {
     $this->impressionsLookbackWindow = $impressionsLookbackWindow;
   }
-
   public function getImpressionsLookbackWindow()
   {
     return $this->impressionsLookbackWindow;
   }
-
   public function setIncludeAttributedIPConversions($includeAttributedIPConversions)
   {
     $this->includeAttributedIPConversions = $includeAttributedIPConversions;
   }
-
   public function getIncludeAttributedIPConversions()
   {
     return $this->includeAttributedIPConversions;
   }
-
   public function setIncludeUnattributedCookieConversions($includeUnattributedCookieConversions)
   {
     $this->includeUnattributedCookieConversions = $includeUnattributedCookieConversions;
   }
-
   public function getIncludeUnattributedCookieConversions()
   {
     return $this->includeUnattributedCookieConversions;
   }
-
   public function setIncludeUnattributedIPConversions($includeUnattributedIPConversions)
   {
     $this->includeUnattributedIPConversions = $includeUnattributedIPConversions;
   }
-
   public function getIncludeUnattributedIPConversions()
   {
     return $this->includeUnattributedIPConversions;
   }
-
   public function setMaximumClickInteractions($maximumClickInteractions)
   {
     $this->maximumClickInteractions = $maximumClickInteractions;
   }
-
   public function getMaximumClickInteractions()
   {
     return $this->maximumClickInteractions;
   }
-
   public function setMaximumImpressionInteractions($maximumImpressionInteractions)
   {
     $this->maximumImpressionInteractions = $maximumImpressionInteractions;
   }
-
   public function getMaximumImpressionInteractions()
   {
     return $this->maximumImpressionInteractions;
   }
-
   public function setMaximumInteractionGap($maximumInteractionGap)
   {
     $this->maximumInteractionGap = $maximumInteractionGap;
   }
-
   public function getMaximumInteractionGap()
   {
     return $this->maximumInteractionGap;
   }
-
   public function setPivotOnInteractionPath($pivotOnInteractionPath)
   {
     $this->pivotOnInteractionPath = $pivotOnInteractionPath;
   }
-
   public function getPivotOnInteractionPath()
   {
     return $this->pivotOnInteractionPath;
@@ -2595,6 +2398,9 @@ class GoogleGAL_Service_Dfareporting_ReportPathToConversionCriteriaReportPropert
 
 class GoogleGAL_Service_Dfareporting_ReportReachCriteria extends GoogleGAL_Collection
 {
+  protected $collection_key = 'reachByFrequencyMetricNames';
+  protected $internal_gapi_mappings = array(
+  );
   protected $activitiesType = 'GoogleGAL_Service_Dfareporting_Activities';
   protected $activitiesDataType = '';
   protected $customRichMediaEventsType = 'GoogleGAL_Service_Dfareporting_CustomRichMediaEvents';
@@ -2608,71 +2414,59 @@ class GoogleGAL_Service_Dfareporting_ReportReachCriteria extends GoogleGAL_Colle
   public $metricNames;
   public $reachByFrequencyMetricNames;
 
+
   public function setActivities(GoogleGAL_Service_Dfareporting_Activities $activities)
   {
     $this->activities = $activities;
   }
-
   public function getActivities()
   {
     return $this->activities;
   }
-
   public function setCustomRichMediaEvents(GoogleGAL_Service_Dfareporting_CustomRichMediaEvents $customRichMediaEvents)
   {
     $this->customRichMediaEvents = $customRichMediaEvents;
   }
-
   public function getCustomRichMediaEvents()
   {
     return $this->customRichMediaEvents;
   }
-
   public function setDateRange(GoogleGAL_Service_Dfareporting_DateRange $dateRange)
   {
     $this->dateRange = $dateRange;
   }
-
   public function getDateRange()
   {
     return $this->dateRange;
   }
-
   public function setDimensionFilters($dimensionFilters)
   {
     $this->dimensionFilters = $dimensionFilters;
   }
-
   public function getDimensionFilters()
   {
     return $this->dimensionFilters;
   }
-
   public function setDimensions($dimensions)
   {
     $this->dimensions = $dimensions;
   }
-
   public function getDimensions()
   {
     return $this->dimensions;
   }
-
   public function setMetricNames($metricNames)
   {
     $this->metricNames = $metricNames;
   }
-
   public function getMetricNames()
   {
     return $this->metricNames;
   }
-
   public function setReachByFrequencyMetricNames($reachByFrequencyMetricNames)
   {
     $this->reachByFrequencyMetricNames = $reachByFrequencyMetricNames;
   }
-
   public function getReachByFrequencyMetricNames()
   {
     return $this->reachByFrequencyMetricNames;
@@ -2681,6 +2475,9 @@ class GoogleGAL_Service_Dfareporting_ReportReachCriteria extends GoogleGAL_Colle
 
 class GoogleGAL_Service_Dfareporting_ReportSchedule extends GoogleGAL_Collection
 {
+  protected $collection_key = 'repeatsOnWeekDays';
+  protected $internal_gapi_mappings = array(
+  );
   public $active;
   public $every;
   public $expirationDate;
@@ -2689,71 +2486,59 @@ class GoogleGAL_Service_Dfareporting_ReportSchedule extends GoogleGAL_Collection
   public $runsOnDayOfMonth;
   public $startDate;
 
+
   public function setActive($active)
   {
     $this->active = $active;
   }
-
   public function getActive()
   {
     return $this->active;
   }
-
   public function setEvery($every)
   {
     $this->every = $every;
   }
-
   public function getEvery()
   {
     return $this->every;
   }
-
   public function setExpirationDate($expirationDate)
   {
     $this->expirationDate = $expirationDate;
   }
-
   public function getExpirationDate()
   {
     return $this->expirationDate;
   }
-
   public function setRepeats($repeats)
   {
     $this->repeats = $repeats;
   }
-
   public function getRepeats()
   {
     return $this->repeats;
   }
-
   public function setRepeatsOnWeekDays($repeatsOnWeekDays)
   {
     $this->repeatsOnWeekDays = $repeatsOnWeekDays;
   }
-
   public function getRepeatsOnWeekDays()
   {
     return $this->repeatsOnWeekDays;
   }
-
   public function setRunsOnDayOfMonth($runsOnDayOfMonth)
   {
     $this->runsOnDayOfMonth = $runsOnDayOfMonth;
   }
-
   public function getRunsOnDayOfMonth()
   {
     return $this->runsOnDayOfMonth;
   }
-
   public function setStartDate($startDate)
   {
     $this->startDate = $startDate;
   }
-
   public function getStartDate()
   {
     return $this->startDate;
@@ -2762,35 +2547,33 @@ class GoogleGAL_Service_Dfareporting_ReportSchedule extends GoogleGAL_Collection
 
 class GoogleGAL_Service_Dfareporting_SortedDimension extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $kind;
   public $name;
   public $sortOrder;
+
 
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setName($name)
   {
     $this->name = $name;
   }
-
   public function getName()
   {
     return $this->name;
   }
-
   public function setSortOrder($sortOrder)
   {
     $this->sortOrder = $sortOrder;
   }
-
   public function getSortOrder()
   {
     return $this->sortOrder;
@@ -2799,6 +2582,8 @@ class GoogleGAL_Service_Dfareporting_SortedDimension extends GoogleGAL_Model
 
 class GoogleGAL_Service_Dfareporting_UserProfile extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $accountId;
   public $accountName;
   public $etag;
@@ -2808,81 +2593,67 @@ class GoogleGAL_Service_Dfareporting_UserProfile extends GoogleGAL_Model
   public $subAccountName;
   public $userName;
 
+
   public function setAccountId($accountId)
   {
     $this->accountId = $accountId;
   }
-
   public function getAccountId()
   {
     return $this->accountId;
   }
-
   public function setAccountName($accountName)
   {
     $this->accountName = $accountName;
   }
-
   public function getAccountName()
   {
     return $this->accountName;
   }
-
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
-
   public function getEtag()
   {
     return $this->etag;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setProfileId($profileId)
   {
     $this->profileId = $profileId;
   }
-
   public function getProfileId()
   {
     return $this->profileId;
   }
-
   public function setSubAccountId($subAccountId)
   {
     $this->subAccountId = $subAccountId;
   }
-
   public function getSubAccountId()
   {
     return $this->subAccountId;
   }
-
   public function setSubAccountName($subAccountName)
   {
     $this->subAccountName = $subAccountName;
   }
-
   public function getSubAccountName()
   {
     return $this->subAccountName;
   }
-
   public function setUserName($userName)
   {
     $this->userName = $userName;
   }
-
   public function getUserName()
   {
     return $this->userName;
@@ -2891,36 +2662,35 @@ class GoogleGAL_Service_Dfareporting_UserProfile extends GoogleGAL_Model
 
 class GoogleGAL_Service_Dfareporting_UserProfileList extends GoogleGAL_Collection
 {
+  protected $collection_key = 'items';
+  protected $internal_gapi_mappings = array(
+  );
   public $etag;
   protected $itemsType = 'GoogleGAL_Service_Dfareporting_UserProfile';
   protected $itemsDataType = 'array';
   public $kind;
 
+
   public function setEtag($etag)
   {
     $this->etag = $etag;
   }
-
   public function getEtag()
   {
     return $this->etag;
   }
-
   public function setItems($items)
   {
     $this->items = $items;
   }
-
   public function getItems()
   {
     return $this->items;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;

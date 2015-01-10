@@ -15,9 +15,7 @@
  * limitations under the License.
  */
 
-require_once 'Google/Client.php';
-require_once 'Google/Http/Request.php';
-require_once 'Google/Http/REST.php';
+require_once realpath(dirname(__FILE__) . '/../../../autoload.php');
 
 /**
  * @author Chirag Shah <chirags@google.com>
@@ -125,10 +123,10 @@ class GoogleGAL_Http_Batch
           }
 
           try {
-            $response = GoogleGAL_Http_REST::decodeHttpResponse($response);
+            $response = GoogleGAL_Http_REST::decodeHttpResponse($response, $this->client);
             $responses[$key] = $response;
           } catch (GoogleGAL_Service_Exception $e) {
-            // Store the exception as the response, so succesful responses
+            // Store the exception as the response, so successful responses
             // can be processed.
             $responses[$key] = $e;
           }

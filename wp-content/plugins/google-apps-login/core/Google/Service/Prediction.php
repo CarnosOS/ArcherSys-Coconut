@@ -19,8 +19,8 @@
  * Service definition for Prediction (v1.6).
  *
  * <p>
- * Lets you access a cloud hosted machine learning service that makes it easy to build smart apps
- * </p>
+ * Lets you access a cloud hosted machine learning service that makes it easy to
+ * build smart apps</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -32,13 +32,17 @@
 class GoogleGAL_Service_Prediction extends GoogleGAL_Service
 {
   /** Manage your data and permissions in Google Cloud Storage. */
-  const DEVSTORAGE_FULL_CONTROL = "https://www.googleapis.com/auth/devstorage.full_control";
+  const DEVSTORAGE_FULL_CONTROL =
+      "https://www.googleapis.com/auth/devstorage.full_control";
   /** View your data in Google Cloud Storage. */
-  const DEVSTORAGE_READ_ONLY = "https://www.googleapis.com/auth/devstorage.read_only";
+  const DEVSTORAGE_READ_ONLY =
+      "https://www.googleapis.com/auth/devstorage.read_only";
   /** Manage your data in Google Cloud Storage. */
-  const DEVSTORAGE_READ_WRITE = "https://www.googleapis.com/auth/devstorage.read_write";
+  const DEVSTORAGE_READ_WRITE =
+      "https://www.googleapis.com/auth/devstorage.read_write";
   /** Manage your data in the Google Prediction API. */
-  const PREDICTION = "https://www.googleapis.com/auth/prediction";
+  const PREDICTION =
+      "https://www.googleapis.com/auth/prediction";
 
   public $hostedmodels;
   public $trainedmodels;
@@ -213,10 +217,8 @@ class GoogleGAL_Service_Prediction_Hostedmodels_Resource extends GoogleGAL_Servi
    * Submit input and request an output against a hosted model.
    * (hostedmodels.predict)
    *
-   * @param string $project
-   * The project associated with the model.
-   * @param string $hostedModelName
-   * The name of a hosted model.
+   * @param string $project The project associated with the model.
+   * @param string $hostedModelName The name of a hosted model.
    * @param GoogleGAL_Input $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_Prediction_Output
@@ -244,10 +246,8 @@ class GoogleGAL_Service_Prediction_Trainedmodels_Resource extends GoogleGAL_Serv
    * Get analysis of the model and the data the model was trained on.
    * (trainedmodels.analyze)
    *
-   * @param string $project
-   * The project associated with the model.
-   * @param string $id
-   * The unique name for the predictive model.
+   * @param string $project The project associated with the model.
+   * @param string $id The unique name for the predictive model.
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_Prediction_Analyze
    */
@@ -257,13 +257,12 @@ class GoogleGAL_Service_Prediction_Trainedmodels_Resource extends GoogleGAL_Serv
     $params = array_merge($params, $optParams);
     return $this->call('analyze', array($params), "GoogleGAL_Service_Prediction_Analyze");
   }
+
   /**
    * Delete a trained model. (trainedmodels.delete)
    *
-   * @param string $project
-   * The project associated with the model.
-   * @param string $id
-   * The unique name for the predictive model.
+   * @param string $project The project associated with the model.
+   * @param string $id The unique name for the predictive model.
    * @param array $optParams Optional parameters.
    */
   public function delete($project, $id, $optParams = array())
@@ -272,13 +271,12 @@ class GoogleGAL_Service_Prediction_Trainedmodels_Resource extends GoogleGAL_Serv
     $params = array_merge($params, $optParams);
     return $this->call('delete', array($params));
   }
+
   /**
    * Check training status of your model. (trainedmodels.get)
    *
-   * @param string $project
-   * The project associated with the model.
-   * @param string $id
-   * The unique name for the predictive model.
+   * @param string $project The project associated with the model.
+   * @param string $id The unique name for the predictive model.
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_Prediction_Insert2
    */
@@ -288,11 +286,11 @@ class GoogleGAL_Service_Prediction_Trainedmodels_Resource extends GoogleGAL_Serv
     $params = array_merge($params, $optParams);
     return $this->call('get', array($params), "GoogleGAL_Service_Prediction_Insert2");
   }
+
   /**
    * Train a Prediction API model. (trainedmodels.insert)
    *
-   * @param string $project
-   * The project associated with the model.
+   * @param string $project The project associated with the model.
    * @param GoogleGAL_Insert $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_Prediction_Insert2
@@ -303,17 +301,15 @@ class GoogleGAL_Service_Prediction_Trainedmodels_Resource extends GoogleGAL_Serv
     $params = array_merge($params, $optParams);
     return $this->call('insert', array($params), "GoogleGAL_Service_Prediction_Insert2");
   }
+
   /**
    * List available models. (trainedmodels.listTrainedmodels)
    *
-   * @param string $project
-   * The project associated with the model.
+   * @param string $project The project associated with the model.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string pageToken
-   * Pagination token.
-   * @opt_param string maxResults
-   * Maximum number of results to return.
+   * @opt_param string pageToken Pagination token.
+   * @opt_param string maxResults Maximum number of results to return.
    * @return GoogleGAL_Service_Prediction_PredictionList
    */
   public function listTrainedmodels($project, $optParams = array())
@@ -322,13 +318,12 @@ class GoogleGAL_Service_Prediction_Trainedmodels_Resource extends GoogleGAL_Serv
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "GoogleGAL_Service_Prediction_PredictionList");
   }
+
   /**
    * Submit model id and request a prediction. (trainedmodels.predict)
    *
-   * @param string $project
-   * The project associated with the model.
-   * @param string $id
-   * The unique name for the predictive model.
+   * @param string $project The project associated with the model.
+   * @param string $id The unique name for the predictive model.
    * @param GoogleGAL_Input $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_Prediction_Output
@@ -339,13 +334,12 @@ class GoogleGAL_Service_Prediction_Trainedmodels_Resource extends GoogleGAL_Serv
     $params = array_merge($params, $optParams);
     return $this->call('predict', array($params), "GoogleGAL_Service_Prediction_Output");
   }
+
   /**
    * Add new data to a trained model. (trainedmodels.update)
    *
-   * @param string $project
-   * The project associated with the model.
-   * @param string $id
-   * The unique name for the predictive model.
+   * @param string $project The project associated with the model.
+   * @param string $id The unique name for the predictive model.
    * @param GoogleGAL_Update $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleGAL_Service_Prediction_Insert2
@@ -363,6 +357,9 @@ class GoogleGAL_Service_Prediction_Trainedmodels_Resource extends GoogleGAL_Serv
 
 class GoogleGAL_Service_Prediction_Analyze extends GoogleGAL_Collection
 {
+  protected $collection_key = 'errors';
+  protected $internal_gapi_mappings = array(
+  );
   protected $dataDescriptionType = 'GoogleGAL_Service_Prediction_AnalyzeDataDescription';
   protected $dataDescriptionDataType = '';
   public $errors;
@@ -372,61 +369,51 @@ class GoogleGAL_Service_Prediction_Analyze extends GoogleGAL_Collection
   protected $modelDescriptionDataType = '';
   public $selfLink;
 
+
   public function setDataDescription(GoogleGAL_Service_Prediction_AnalyzeDataDescription $dataDescription)
   {
     $this->dataDescription = $dataDescription;
   }
-
   public function getDataDescription()
   {
     return $this->dataDescription;
   }
-
   public function setErrors($errors)
   {
     $this->errors = $errors;
   }
-
   public function getErrors()
   {
     return $this->errors;
   }
-
   public function setId($id)
   {
     $this->id = $id;
   }
-
   public function getId()
   {
     return $this->id;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setModelDescription(GoogleGAL_Service_Prediction_AnalyzeModelDescription $modelDescription)
   {
     $this->modelDescription = $modelDescription;
   }
-
   public function getModelDescription()
   {
     return $this->modelDescription;
   }
-
   public function setSelfLink($selfLink)
   {
     $this->selfLink = $selfLink;
   }
-
   public function getSelfLink()
   {
     return $this->selfLink;
@@ -435,26 +422,27 @@ class GoogleGAL_Service_Prediction_Analyze extends GoogleGAL_Collection
 
 class GoogleGAL_Service_Prediction_AnalyzeDataDescription extends GoogleGAL_Collection
 {
+  protected $collection_key = 'features';
+  protected $internal_gapi_mappings = array(
+  );
   protected $featuresType = 'GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeatures';
   protected $featuresDataType = 'array';
   protected $outputFeatureType = 'GoogleGAL_Service_Prediction_AnalyzeDataDescriptionOutputFeature';
   protected $outputFeatureDataType = '';
 
+
   public function setFeatures($features)
   {
     $this->features = $features;
   }
-
   public function getFeatures()
   {
     return $this->features;
   }
-
   public function setOutputFeature(GoogleGAL_Service_Prediction_AnalyzeDataDescriptionOutputFeature $outputFeature)
   {
     $this->outputFeature = $outputFeature;
   }
-
   public function getOutputFeature()
   {
     return $this->outputFeature;
@@ -463,6 +451,8 @@ class GoogleGAL_Service_Prediction_AnalyzeDataDescription extends GoogleGAL_Coll
 
 class GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeatures extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   protected $categoricalType = 'GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeaturesCategorical';
   protected $categoricalDataType = '';
   public $index;
@@ -471,41 +461,35 @@ class GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeatures extends Google
   protected $textType = 'GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeaturesText';
   protected $textDataType = '';
 
+
   public function setCategorical(GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeaturesCategorical $categorical)
   {
     $this->categorical = $categorical;
   }
-
   public function getCategorical()
   {
     return $this->categorical;
   }
-
   public function setIndex($index)
   {
     $this->index = $index;
   }
-
   public function getIndex()
   {
     return $this->index;
   }
-
   public function setNumeric(GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeaturesNumeric $numeric)
   {
     $this->numeric = $numeric;
   }
-
   public function getNumeric()
   {
     return $this->numeric;
   }
-
   public function setText(GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeaturesText $text)
   {
     $this->text = $text;
   }
-
   public function getText()
   {
     return $this->text;
@@ -514,25 +498,26 @@ class GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeatures extends Google
 
 class GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeaturesCategorical extends GoogleGAL_Collection
 {
+  protected $collection_key = 'values';
+  protected $internal_gapi_mappings = array(
+  );
   public $count;
   protected $valuesType = 'GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeaturesCategoricalValues';
   protected $valuesDataType = 'array';
+
 
   public function setCount($count)
   {
     $this->count = $count;
   }
-
   public function getCount()
   {
     return $this->count;
   }
-
   public function setValues($values)
   {
     $this->values = $values;
   }
-
   public function getValues()
   {
     return $this->values;
@@ -541,24 +526,24 @@ class GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeaturesCategorical ext
 
 class GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeaturesCategoricalValues extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $count;
   public $value;
+
 
   public function setCount($count)
   {
     $this->count = $count;
   }
-
   public function getCount()
   {
     return $this->count;
   }
-
   public function setValue($value)
   {
     $this->value = $value;
   }
-
   public function getValue()
   {
     return $this->value;
@@ -567,35 +552,33 @@ class GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeaturesCategoricalValu
 
 class GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeaturesNumeric extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $count;
   public $mean;
   public $variance;
+
 
   public function setCount($count)
   {
     $this->count = $count;
   }
-
   public function getCount()
   {
     return $this->count;
   }
-
   public function setMean($mean)
   {
     $this->mean = $mean;
   }
-
   public function getMean()
   {
     return $this->mean;
   }
-
   public function setVariance($variance)
   {
     $this->variance = $variance;
   }
-
   public function getVariance()
   {
     return $this->variance;
@@ -604,13 +587,15 @@ class GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeaturesNumeric extends
 
 class GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeaturesText extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $count;
+
 
   public function setCount($count)
   {
     $this->count = $count;
   }
-
   public function getCount()
   {
     return $this->count;
@@ -619,26 +604,27 @@ class GoogleGAL_Service_Prediction_AnalyzeDataDescriptionFeaturesText extends Go
 
 class GoogleGAL_Service_Prediction_AnalyzeDataDescriptionOutputFeature extends GoogleGAL_Collection
 {
+  protected $collection_key = 'text';
+  protected $internal_gapi_mappings = array(
+  );
   protected $numericType = 'GoogleGAL_Service_Prediction_AnalyzeDataDescriptionOutputFeatureNumeric';
   protected $numericDataType = '';
   protected $textType = 'GoogleGAL_Service_Prediction_AnalyzeDataDescriptionOutputFeatureText';
   protected $textDataType = 'array';
 
+
   public function setNumeric(GoogleGAL_Service_Prediction_AnalyzeDataDescriptionOutputFeatureNumeric $numeric)
   {
     $this->numeric = $numeric;
   }
-
   public function getNumeric()
   {
     return $this->numeric;
   }
-
   public function setText($text)
   {
     $this->text = $text;
   }
-
   public function getText()
   {
     return $this->text;
@@ -647,35 +633,33 @@ class GoogleGAL_Service_Prediction_AnalyzeDataDescriptionOutputFeature extends G
 
 class GoogleGAL_Service_Prediction_AnalyzeDataDescriptionOutputFeatureNumeric extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $count;
   public $mean;
   public $variance;
+
 
   public function setCount($count)
   {
     $this->count = $count;
   }
-
   public function getCount()
   {
     return $this->count;
   }
-
   public function setMean($mean)
   {
     $this->mean = $mean;
   }
-
   public function getMean()
   {
     return $this->mean;
   }
-
   public function setVariance($variance)
   {
     $this->variance = $variance;
   }
-
   public function getVariance()
   {
     return $this->variance;
@@ -684,78 +668,94 @@ class GoogleGAL_Service_Prediction_AnalyzeDataDescriptionOutputFeatureNumeric ex
 
 class GoogleGAL_Service_Prediction_AnalyzeDataDescriptionOutputFeatureText extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $count;
   public $value;
+
 
   public function setCount($count)
   {
     $this->count = $count;
   }
-
   public function getCount()
   {
     return $this->count;
   }
-
   public function setValue($value)
   {
     $this->value = $value;
   }
-
   public function getValue()
   {
     return $this->value;
   }
 }
 
+class GoogleGAL_Service_Prediction_AnalyzeErrors extends GoogleGAL_Model
+{
+}
+
 class GoogleGAL_Service_Prediction_AnalyzeModelDescription extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $confusionMatrix;
   public $confusionMatrixRowTotals;
   protected $modelinfoType = 'GoogleGAL_Service_Prediction_Insert2';
   protected $modelinfoDataType = '';
 
+
   public function setConfusionMatrix($confusionMatrix)
   {
     $this->confusionMatrix = $confusionMatrix;
   }
-
   public function getConfusionMatrix()
   {
     return $this->confusionMatrix;
   }
-
   public function setConfusionMatrixRowTotals($confusionMatrixRowTotals)
   {
     $this->confusionMatrixRowTotals = $confusionMatrixRowTotals;
   }
-
   public function getConfusionMatrixRowTotals()
   {
     return $this->confusionMatrixRowTotals;
   }
-
   public function setModelinfo(GoogleGAL_Service_Prediction_Insert2 $modelinfo)
   {
     $this->modelinfo = $modelinfo;
   }
-
   public function getModelinfo()
   {
     return $this->modelinfo;
   }
 }
 
+class GoogleGAL_Service_Prediction_AnalyzeModelDescriptionConfusionMatrix extends GoogleGAL_Model
+{
+}
+
+class GoogleGAL_Service_Prediction_AnalyzeModelDescriptionConfusionMatrixElement extends GoogleGAL_Model
+{
+}
+
+class GoogleGAL_Service_Prediction_AnalyzeModelDescriptionConfusionMatrixRowTotals extends GoogleGAL_Model
+{
+}
+
 class GoogleGAL_Service_Prediction_Input extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   protected $inputType = 'GoogleGAL_Service_Prediction_InputInput';
   protected $inputDataType = '';
+
 
   public function setInput(GoogleGAL_Service_Prediction_InputInput $input)
   {
     $this->input = $input;
   }
-
   public function getInput()
   {
     return $this->input;
@@ -764,13 +764,16 @@ class GoogleGAL_Service_Prediction_Input extends GoogleGAL_Model
 
 class GoogleGAL_Service_Prediction_InputInput extends GoogleGAL_Collection
 {
+  protected $collection_key = 'csvInstance';
+  protected $internal_gapi_mappings = array(
+  );
   public $csvInstance;
+
 
   public function setCsvInstance($csvInstance)
   {
     $this->csvInstance = $csvInstance;
   }
-
   public function getCsvInstance()
   {
     return $this->csvInstance;
@@ -779,6 +782,9 @@ class GoogleGAL_Service_Prediction_InputInput extends GoogleGAL_Collection
 
 class GoogleGAL_Service_Prediction_Insert extends GoogleGAL_Collection
 {
+  protected $collection_key = 'utility';
+  protected $internal_gapi_mappings = array(
+  );
   public $id;
   public $modelType;
   public $sourceModel;
@@ -789,81 +795,67 @@ class GoogleGAL_Service_Prediction_Insert extends GoogleGAL_Collection
   protected $trainingInstancesDataType = 'array';
   public $utility;
 
+
   public function setId($id)
   {
     $this->id = $id;
   }
-
   public function getId()
   {
     return $this->id;
   }
-
   public function setModelType($modelType)
   {
     $this->modelType = $modelType;
   }
-
   public function getModelType()
   {
     return $this->modelType;
   }
-
   public function setSourceModel($sourceModel)
   {
     $this->sourceModel = $sourceModel;
   }
-
   public function getSourceModel()
   {
     return $this->sourceModel;
   }
-
   public function setStorageDataLocation($storageDataLocation)
   {
     $this->storageDataLocation = $storageDataLocation;
   }
-
   public function getStorageDataLocation()
   {
     return $this->storageDataLocation;
   }
-
   public function setStoragePMMLLocation($storagePMMLLocation)
   {
     $this->storagePMMLLocation = $storagePMMLLocation;
   }
-
   public function getStoragePMMLLocation()
   {
     return $this->storagePMMLLocation;
   }
-
   public function setStoragePMMLModelLocation($storagePMMLModelLocation)
   {
     $this->storagePMMLModelLocation = $storagePMMLModelLocation;
   }
-
   public function getStoragePMMLModelLocation()
   {
     return $this->storagePMMLModelLocation;
   }
-
   public function setTrainingInstances($trainingInstances)
   {
     $this->trainingInstances = $trainingInstances;
   }
-
   public function getTrainingInstances()
   {
     return $this->trainingInstances;
   }
-
   public function setUtility($utility)
   {
     $this->utility = $utility;
   }
-
   public function getUtility()
   {
     return $this->utility;
@@ -872,6 +864,8 @@ class GoogleGAL_Service_Prediction_Insert extends GoogleGAL_Collection
 
 class GoogleGAL_Service_Prediction_Insert2 extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $created;
   public $id;
   public $kind;
@@ -885,111 +879,91 @@ class GoogleGAL_Service_Prediction_Insert2 extends GoogleGAL_Model
   public $trainingComplete;
   public $trainingStatus;
 
+
   public function setCreated($created)
   {
     $this->created = $created;
   }
-
   public function getCreated()
   {
     return $this->created;
   }
-
   public function setId($id)
   {
     $this->id = $id;
   }
-
   public function getId()
   {
     return $this->id;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setModelInfo(GoogleGAL_Service_Prediction_Insert2ModelInfo $modelInfo)
   {
     $this->modelInfo = $modelInfo;
   }
-
   public function getModelInfo()
   {
     return $this->modelInfo;
   }
-
   public function setModelType($modelType)
   {
     $this->modelType = $modelType;
   }
-
   public function getModelType()
   {
     return $this->modelType;
   }
-
   public function setSelfLink($selfLink)
   {
     $this->selfLink = $selfLink;
   }
-
   public function getSelfLink()
   {
     return $this->selfLink;
   }
-
   public function setStorageDataLocation($storageDataLocation)
   {
     $this->storageDataLocation = $storageDataLocation;
   }
-
   public function getStorageDataLocation()
   {
     return $this->storageDataLocation;
   }
-
   public function setStoragePMMLLocation($storagePMMLLocation)
   {
     $this->storagePMMLLocation = $storagePMMLLocation;
   }
-
   public function getStoragePMMLLocation()
   {
     return $this->storagePMMLLocation;
   }
-
   public function setStoragePMMLModelLocation($storagePMMLModelLocation)
   {
     $this->storagePMMLModelLocation = $storagePMMLModelLocation;
   }
-
   public function getStoragePMMLModelLocation()
   {
     return $this->storagePMMLModelLocation;
   }
-
   public function setTrainingComplete($trainingComplete)
   {
     $this->trainingComplete = $trainingComplete;
   }
-
   public function getTrainingComplete()
   {
     return $this->trainingComplete;
   }
-
   public function setTrainingStatus($trainingStatus)
   {
     $this->trainingStatus = $trainingStatus;
   }
-
   public function getTrainingStatus()
   {
     return $this->trainingStatus;
@@ -998,6 +972,8 @@ class GoogleGAL_Service_Prediction_Insert2 extends GoogleGAL_Model
 
 class GoogleGAL_Service_Prediction_Insert2ModelInfo extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $classWeightedAccuracy;
   public $classificationAccuracy;
   public $meanSquaredError;
@@ -1005,61 +981,51 @@ class GoogleGAL_Service_Prediction_Insert2ModelInfo extends GoogleGAL_Model
   public $numberInstances;
   public $numberLabels;
 
+
   public function setClassWeightedAccuracy($classWeightedAccuracy)
   {
     $this->classWeightedAccuracy = $classWeightedAccuracy;
   }
-
   public function getClassWeightedAccuracy()
   {
     return $this->classWeightedAccuracy;
   }
-
   public function setClassificationAccuracy($classificationAccuracy)
   {
     $this->classificationAccuracy = $classificationAccuracy;
   }
-
   public function getClassificationAccuracy()
   {
     return $this->classificationAccuracy;
   }
-
   public function setMeanSquaredError($meanSquaredError)
   {
     $this->meanSquaredError = $meanSquaredError;
   }
-
   public function getMeanSquaredError()
   {
     return $this->meanSquaredError;
   }
-
   public function setModelType($modelType)
   {
     $this->modelType = $modelType;
   }
-
   public function getModelType()
   {
     return $this->modelType;
   }
-
   public function setNumberInstances($numberInstances)
   {
     $this->numberInstances = $numberInstances;
   }
-
   public function getNumberInstances()
   {
     return $this->numberInstances;
   }
-
   public function setNumberLabels($numberLabels)
   {
     $this->numberLabels = $numberLabels;
   }
-
   public function getNumberLabels()
   {
     return $this->numberLabels;
@@ -1068,32 +1034,40 @@ class GoogleGAL_Service_Prediction_Insert2ModelInfo extends GoogleGAL_Model
 
 class GoogleGAL_Service_Prediction_InsertTrainingInstances extends GoogleGAL_Collection
 {
+  protected $collection_key = 'csvInstance';
+  protected $internal_gapi_mappings = array(
+  );
   public $csvInstance;
   public $output;
+
 
   public function setCsvInstance($csvInstance)
   {
     $this->csvInstance = $csvInstance;
   }
-
   public function getCsvInstance()
   {
     return $this->csvInstance;
   }
-
   public function setOutput($output)
   {
     $this->output = $output;
   }
-
   public function getOutput()
   {
     return $this->output;
   }
 }
 
+class GoogleGAL_Service_Prediction_InsertUtility extends GoogleGAL_Model
+{
+}
+
 class GoogleGAL_Service_Prediction_Output extends GoogleGAL_Collection
 {
+  protected $collection_key = 'outputMulti';
+  protected $internal_gapi_mappings = array(
+  );
   public $id;
   public $kind;
   public $outputLabel;
@@ -1102,61 +1076,51 @@ class GoogleGAL_Service_Prediction_Output extends GoogleGAL_Collection
   public $outputValue;
   public $selfLink;
 
+
   public function setId($id)
   {
     $this->id = $id;
   }
-
   public function getId()
   {
     return $this->id;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setOutputLabel($outputLabel)
   {
     $this->outputLabel = $outputLabel;
   }
-
   public function getOutputLabel()
   {
     return $this->outputLabel;
   }
-
   public function setOutputMulti($outputMulti)
   {
     $this->outputMulti = $outputMulti;
   }
-
   public function getOutputMulti()
   {
     return $this->outputMulti;
   }
-
   public function setOutputValue($outputValue)
   {
     $this->outputValue = $outputValue;
   }
-
   public function getOutputValue()
   {
     return $this->outputValue;
   }
-
   public function setSelfLink($selfLink)
   {
     $this->selfLink = $selfLink;
   }
-
   public function getSelfLink()
   {
     return $this->selfLink;
@@ -1165,24 +1129,24 @@ class GoogleGAL_Service_Prediction_Output extends GoogleGAL_Collection
 
 class GoogleGAL_Service_Prediction_OutputOutputMulti extends GoogleGAL_Model
 {
+  protected $internal_gapi_mappings = array(
+  );
   public $label;
   public $score;
+
 
   public function setLabel($label)
   {
     $this->label = $label;
   }
-
   public function getLabel()
   {
     return $this->label;
   }
-
   public function setScore($score)
   {
     $this->score = $score;
   }
-
   public function getScore()
   {
     return $this->score;
@@ -1191,47 +1155,44 @@ class GoogleGAL_Service_Prediction_OutputOutputMulti extends GoogleGAL_Model
 
 class GoogleGAL_Service_Prediction_PredictionList extends GoogleGAL_Collection
 {
+  protected $collection_key = 'items';
+  protected $internal_gapi_mappings = array(
+  );
   protected $itemsType = 'GoogleGAL_Service_Prediction_Insert2';
   protected $itemsDataType = 'array';
   public $kind;
   public $nextPageToken;
   public $selfLink;
 
+
   public function setItems($items)
   {
     $this->items = $items;
   }
-
   public function getItems()
   {
     return $this->items;
   }
-
   public function setKind($kind)
   {
     $this->kind = $kind;
   }
-
   public function getKind()
   {
     return $this->kind;
   }
-
   public function setNextPageToken($nextPageToken)
   {
     $this->nextPageToken = $nextPageToken;
   }
-
   public function getNextPageToken()
   {
     return $this->nextPageToken;
   }
-
   public function setSelfLink($selfLink)
   {
     $this->selfLink = $selfLink;
   }
-
   public function getSelfLink()
   {
     return $this->selfLink;
@@ -1240,24 +1201,25 @@ class GoogleGAL_Service_Prediction_PredictionList extends GoogleGAL_Collection
 
 class GoogleGAL_Service_Prediction_Update extends GoogleGAL_Collection
 {
+  protected $collection_key = 'csvInstance';
+  protected $internal_gapi_mappings = array(
+  );
   public $csvInstance;
   public $output;
+
 
   public function setCsvInstance($csvInstance)
   {
     $this->csvInstance = $csvInstance;
   }
-
   public function getCsvInstance()
   {
     return $this->csvInstance;
   }
-
   public function setOutput($output)
   {
     $this->output = $output;
   }
-
   public function getOutput()
   {
     return $this->output;

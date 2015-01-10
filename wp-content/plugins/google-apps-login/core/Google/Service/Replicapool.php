@@ -16,15 +16,15 @@
  */
 
 /**
- * Service definition for Replicapool (v1beta1).
+ * Service definition for Replicapool (v1beta2).
  *
  * <p>
- * The Replica Pool API allows users to declaratively provision and manage groups of Google Compute Engine instances based on a common template.
- * </p>
+ * The Google Compute Engine Instance Group Manager API provides groups of
+ * homogenous Compute Engine Instances.</p>
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/compute/docs/replica-pool/" target="_blank">Documentation</a>
+ * <a href="https://developers.google.com/compute/docs/instance-groups/manager/v1beta2" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -32,18 +32,17 @@
 class GoogleGAL_Service_Replicapool extends GoogleGAL_Service
 {
   /** View and manage your data across Google Cloud Platform services. */
-  const CLOUD_PLATFORM = "https://www.googleapis.com/auth/cloud-platform";
-  /** View and manage your Google Cloud Platform management resources and deployment status information. */
-  const NDEV_CLOUDMAN = "https://www.googleapis.com/auth/ndev.cloudman";
-  /** View your Google Cloud Platform management resources and deployment status information. */
-  const NDEV_CLOUDMAN_READONLY = "https://www.googleapis.com/auth/ndev.cloudman.readonly";
-  /** View and manage replica pools. */
-  const REPLICAPOOL = "https://www.googleapis.com/auth/replicapool";
-  /** View replica pools. */
-  const REPLICAPOOL_READONLY = "https://www.googleapis.com/auth/replicapool.readonly";
+  const CLOUD_PLATFORM =
+      "https://www.googleapis.com/auth/cloud-platform";
+  /** View and manage your Google Compute Engine resources. */
+  const COMPUTE =
+      "https://www.googleapis.com/auth/compute";
+  /** View your Google Compute Engine resources. */
+  const COMPUTE_READONLY =
+      "https://www.googleapis.com/auth/compute.readonly";
 
-  public $pools;
-  public $replicas;
+  public $instanceGroupManagers;
+  public $zoneOperations;
   
 
   /**
@@ -54,21 +53,21 @@ class GoogleGAL_Service_Replicapool extends GoogleGAL_Service
   public function __construct(GoogleGAL_Client $client)
   {
     parent::__construct($client);
-    $this->servicePath = 'replicapool/v1beta1/projects/';
-    $this->version = 'v1beta1';
+    $this->servicePath = 'replicapool/v1beta2/projects/';
+    $this->version = 'v1beta2';
     $this->serviceName = 'replicapool';
 
-    $this->pools = new GoogleGAL_Service_Replicapool_Pools_Resource(
+    $this->instanceGroupManagers = new GoogleGAL_Service_Replicapool_InstanceGroupManagers_Resource(
         $this,
         $this->serviceName,
-        'pools',
+        'instanceGroupManagers',
         array(
           'methods' => array(
-            'delete' => array(
-              'path' => '{projectName}/zones/{zone}/pools/{poolName}',
+            'abandonInstances' => array(
+              'path' => '{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/abandonInstances',
               'httpMethod' => 'POST',
               'parameters' => array(
-                'projectName' => array(
+                'project' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -78,17 +77,57 @@ class GoogleGAL_Service_Replicapool extends GoogleGAL_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'poolName' => array(
+                'instanceGroupManager' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'delete' => array(
+              'path' => '{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
+              'httpMethod' => 'DELETE',
+              'parameters' => array(
+                'project' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'zone' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'instanceGroupManager' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'deleteInstances' => array(
+              'path' => '{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/deleteInstances',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'project' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'zone' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'instanceGroupManager' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
                 ),
               ),
             ),'get' => array(
-              'path' => '{projectName}/zones/{zone}/pools/{poolName}',
+              'path' => '{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}',
               'httpMethod' => 'GET',
               'parameters' => array(
-                'projectName' => array(
+                'project' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -98,17 +137,17 @@ class GoogleGAL_Service_Replicapool extends GoogleGAL_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'poolName' => array(
+                'instanceGroupManager' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
                 ),
               ),
             ),'insert' => array(
-              'path' => '{projectName}/zones/{zone}/pools',
+              'path' => '{project}/zones/{zone}/instanceGroupManagers',
               'httpMethod' => 'POST',
               'parameters' => array(
-                'projectName' => array(
+                'project' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -116,14 +155,19 @@ class GoogleGAL_Service_Replicapool extends GoogleGAL_Service
                 'zone' => array(
                   'location' => 'path',
                   'type' => 'string',
+                  'required' => true,
+                ),
+                'size' => array(
+                  'location' => 'query',
+                  'type' => 'integer',
                   'required' => true,
                 ),
               ),
             ),'list' => array(
-              'path' => '{projectName}/zones/{zone}/pools',
+              'path' => '{project}/zones/{zone}/instanceGroupManagers',
               'httpMethod' => 'GET',
               'parameters' => array(
-                'projectName' => array(
+                'project' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -132,6 +176,10 @@ class GoogleGAL_Service_Replicapool extends GoogleGAL_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ),
+                'filter' => array(
+                  'location' => 'query',
+                  'type' => 'string',
                 ),
                 'pageToken' => array(
                   'location' => 'query',
@@ -140,13 +188,33 @@ class GoogleGAL_Service_Replicapool extends GoogleGAL_Service
                 'maxResults' => array(
                   'location' => 'query',
                   'type' => 'integer',
+                ),
+              ),
+            ),'recreateInstances' => array(
+              'path' => '{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/recreateInstances',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'project' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'zone' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'instanceGroupManager' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
                 ),
               ),
             ),'resize' => array(
-              'path' => '{projectName}/zones/{zone}/pools/{poolName}/resize',
+              'path' => '{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/resize',
               'httpMethod' => 'POST',
               'parameters' => array(
-                'projectName' => array(
+                'project' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -156,21 +224,22 @@ class GoogleGAL_Service_Replicapool extends GoogleGAL_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'poolName' => array(
+                'instanceGroupManager' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
                 ),
-                'numReplicas' => array(
+                'size' => array(
                   'location' => 'query',
                   'type' => 'integer',
+                  'required' => true,
                 ),
               ),
-            ),'updatetemplate' => array(
-              'path' => '{projectName}/zones/{zone}/pools/{poolName}/updateTemplate',
+            ),'setInstanceTemplate' => array(
+              'path' => '{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setInstanceTemplate',
               'httpMethod' => 'POST',
               'parameters' => array(
-                'projectName' => array(
+                'project' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -180,7 +249,27 @@ class GoogleGAL_Service_Replicapool extends GoogleGAL_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'poolName' => array(
+                'instanceGroupManager' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+              ),
+            ),'setTargetPools' => array(
+              'path' => '{project}/zones/{zone}/instanceGroupManagers/{instanceGroupManager}/setTargetPools',
+              'httpMethod' => 'POST',
+              'parameters' => array(
+                'project' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'zone' => array(
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ),
+                'instanceGroupManager' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -190,42 +279,17 @@ class GoogleGAL_Service_Replicapool extends GoogleGAL_Service
           )
         )
     );
-    $this->replicas = new GoogleGAL_Service_Replicapool_Replicas_Resource(
+    $this->zoneOperations = new GoogleGAL_Service_Replicapool_ZoneOperations_Resource(
         $this,
         $this->serviceName,
-        'replicas',
+        'zoneOperations',
         array(
           'methods' => array(
-            'delete' => array(
-              'path' => '{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'projectName' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'poolName' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'replicaName' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'get' => array(
-              'path' => '{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}',
+            'get' => array(
+              'path' => '{project}/zones/{zone}/operations/{operation}',
               'httpMethod' => 'GET',
               'parameters' => array(
-                'projectName' => array(
+                'project' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -235,22 +299,17 @@ class GoogleGAL_Service_Replicapool extends GoogleGAL_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'poolName' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'replicaName' => array(
+                'operation' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
                 ),
               ),
             ),'list' => array(
-              'path' => '{projectName}/zones/{zone}/pools/{poolName}/replicas',
+              'path' => '{project}/zones/{zone}/operations',
               'httpMethod' => 'GET',
               'parameters' => array(
-                'projectName' => array(
+                'project' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
@@ -260,10 +319,9 @@ class GoogleGAL_Service_Replicapool extends GoogleGAL_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'poolName' => array(
-                  'location' => 'path',
+                'filter' => array(
+                  'location' => 'query',
                   'type' => 'string',
-                  'required' => true,
                 ),
                 'pageToken' => array(
                   'location' => 'query',
@@ -274,31 +332,6 @@ class GoogleGAL_Service_Replicapool extends GoogleGAL_Service
                   'type' => 'integer',
                 ),
               ),
-            ),'restart' => array(
-              'path' => '{projectName}/zones/{zone}/pools/{poolName}/replicas/{replicaName}/restart',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'projectName' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'zone' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'poolName' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-                'replicaName' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
             ),
           )
         )
@@ -308,1282 +341,933 @@ class GoogleGAL_Service_Replicapool extends GoogleGAL_Service
 
 
 /**
- * The "pools" collection of methods.
+ * The "instanceGroupManagers" collection of methods.
  * Typical usage is:
  *  <code>
  *   $replicapoolService = new GoogleGAL_Service_Replicapool(...);
- *   $pools = $replicapoolService->pools;
+ *   $instanceGroupManagers = $replicapoolService->instanceGroupManagers;
  *  </code>
  */
-class GoogleGAL_Service_Replicapool_Pools_Resource extends GoogleGAL_Service_Resource
+class GoogleGAL_Service_Replicapool_InstanceGroupManagers_Resource extends GoogleGAL_Service_Resource
 {
 
   /**
-   * Deletes a replica pool. (pools.delete)
+   * Removes the specified instances from the managed instance group, and from any
+   * target pools of which they were members, without deleting the instances.
+   * (instanceGroupManagers.abandonInstances)
    *
-   * @param string $projectName
-   * The project ID for this replica pool.
-   * @param string $zone
-   * The zone for this replica pool.
-   * @param string $poolName
-   * The name of the replica pool to delete.
-   * @param GoogleGAL_PoolsDeleteRequest $postBody
+   * @param string $project The Google Developers Console project name.
+   * @param string $zone The name of the zone in which the instance group manager
+   * resides.
+   * @param string $instanceGroupManager The name of the instance group manager.
+   * @param GoogleGAL_InstanceGroupManagersAbandonInstancesRequest $postBody
    * @param array $optParams Optional parameters.
+   * @return GoogleGAL_Service_Replicapool_Operation
    */
-  public function delete($projectName, $zone, $poolName, GoogleGAL_Service_Replicapool_PoolsDeleteRequest $postBody, $optParams = array())
+  public function abandonInstances($project, $zone, $instanceGroupManager, GoogleGAL_Service_Replicapool_InstanceGroupManagersAbandonInstancesRequest $postBody, $optParams = array())
   {
-    $params = array('projectName' => $projectName, 'zone' => $zone, 'poolName' => $poolName, 'postBody' => $postBody);
+    $params = array('project' => $project, 'zone' => $zone, 'instanceGroupManager' => $instanceGroupManager, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('delete', array($params));
+    return $this->call('abandonInstances', array($params), "GoogleGAL_Service_Replicapool_Operation");
   }
+
   /**
-   * Gets information about a single replica pool. (pools.get)
+   * Deletes the instance group manager and all instances contained within. If
+   * you'd like to delete the manager without deleting the instances, you must
+   * first abandon the instances to remove them from the group.
+   * (instanceGroupManagers.delete)
    *
-   * @param string $projectName
-   * The project ID for this replica pool.
-   * @param string $zone
-   * The zone for this replica pool.
-   * @param string $poolName
-   * The name of the replica pool for which you want to get more information.
+   * @param string $project The Google Developers Console project name.
+   * @param string $zone The name of the zone in which the instance group manager
+   * resides.
+   * @param string $instanceGroupManager Name of the Instance Group Manager
+   * resource to delete.
    * @param array $optParams Optional parameters.
-   * @return GoogleGAL_Service_Replicapool_Pool
+   * @return GoogleGAL_Service_Replicapool_Operation
    */
-  public function get($projectName, $zone, $poolName, $optParams = array())
+  public function delete($project, $zone, $instanceGroupManager, $optParams = array())
   {
-    $params = array('projectName' => $projectName, 'zone' => $zone, 'poolName' => $poolName);
+    $params = array('project' => $project, 'zone' => $zone, 'instanceGroupManager' => $instanceGroupManager);
     $params = array_merge($params, $optParams);
-    return $this->call('get', array($params), "GoogleGAL_Service_Replicapool_Pool");
+    return $this->call('delete', array($params), "GoogleGAL_Service_Replicapool_Operation");
   }
+
   /**
-   * Inserts a new replica pool. (pools.insert)
+   * Deletes the specified instances. The instances are removed from the instance
+   * group and any target pools of which they are a member, then deleted. The
+   * targetSize of the instance group manager is reduced by the number of
+   * instances deleted. (instanceGroupManagers.deleteInstances)
    *
-   * @param string $projectName
-   * The project ID for this replica pool.
-   * @param string $zone
-   * The zone for this replica pool.
-   * @param GoogleGAL_Pool $postBody
+   * @param string $project The Google Developers Console project name.
+   * @param string $zone The name of the zone in which the instance group manager
+   * resides.
+   * @param string $instanceGroupManager The name of the instance group manager.
+   * @param GoogleGAL_InstanceGroupManagersDeleteInstancesRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return GoogleGAL_Service_Replicapool_Pool
+   * @return GoogleGAL_Service_Replicapool_Operation
    */
-  public function insert($projectName, $zone, GoogleGAL_Service_Replicapool_Pool $postBody, $optParams = array())
+  public function deleteInstances($project, $zone, $instanceGroupManager, GoogleGAL_Service_Replicapool_InstanceGroupManagersDeleteInstancesRequest $postBody, $optParams = array())
   {
-    $params = array('projectName' => $projectName, 'zone' => $zone, 'postBody' => $postBody);
+    $params = array('project' => $project, 'zone' => $zone, 'instanceGroupManager' => $instanceGroupManager, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('insert', array($params), "GoogleGAL_Service_Replicapool_Pool");
+    return $this->call('deleteInstances', array($params), "GoogleGAL_Service_Replicapool_Operation");
   }
+
   /**
-   * List all replica pools. (pools.listPools)
+   * Returns the specified Instance Group Manager resource.
+   * (instanceGroupManagers.get)
    *
-   * @param string $projectName
-   * The project ID for this replica pool.
-   * @param string $zone
-   * The zone for this replica pool.
+   * @param string $project The Google Developers Console project name.
+   * @param string $zone The name of the zone in which the instance group manager
+   * resides.
+   * @param string $instanceGroupManager Name of the instance resource to return.
    * @param array $optParams Optional parameters.
-   *
-   * @opt_param string pageToken
-   * Specifies a nextPageToken returned by a previous list request. This token can be used to request
-    * the next page of results from a previous list request.
-   * @opt_param int maxResults
-   * Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default:
-    * 50)
-   * @return GoogleGAL_Service_Replicapool_PoolsListResponse
+   * @return GoogleGAL_Service_Replicapool_InstanceGroupManager
    */
-  public function listPools($projectName, $zone, $optParams = array())
+  public function get($project, $zone, $instanceGroupManager, $optParams = array())
   {
-    $params = array('projectName' => $projectName, 'zone' => $zone);
+    $params = array('project' => $project, 'zone' => $zone, 'instanceGroupManager' => $instanceGroupManager);
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "GoogleGAL_Service_Replicapool_PoolsListResponse");
+    return $this->call('get', array($params), "GoogleGAL_Service_Replicapool_InstanceGroupManager");
   }
+
   /**
-   * Resize a pool. (pools.resize)
+   * Creates an instance group manager, as well as the instance group and the
+   * specified number of instances. (instanceGroupManagers.insert)
    *
-   * @param string $projectName
-   * The project ID for this replica pool.
-   * @param string $zone
-   * The zone for this replica pool.
-   * @param string $poolName
-   * The name of the replica pool to resize.
+   * @param string $project The Google Developers Console project name.
+   * @param string $zone The name of the zone in which the instance group manager
+   * resides.
+   * @param int $size Number of instances that should exist.
+   * @param GoogleGAL_InstanceGroupManager $postBody
    * @param array $optParams Optional parameters.
-   *
-   * @opt_param int numReplicas
-   * The desired number of replicas to resize to. If this number is larger than the existing number
-    * of replicas, new replicas will be added. If the number is smaller, then existing replicas will
-    * be deleted.
-  This is an asynchronous operation, and multiple overlapping resize requests can be
-    * made. Replica Pools will use the information from the last resize request.
-   * @return GoogleGAL_Service_Replicapool_Pool
+   * @return GoogleGAL_Service_Replicapool_Operation
    */
-  public function resize($projectName, $zone, $poolName, $optParams = array())
+  public function insert($project, $zone, $size, GoogleGAL_Service_Replicapool_InstanceGroupManager $postBody, $optParams = array())
   {
-    $params = array('projectName' => $projectName, 'zone' => $zone, 'poolName' => $poolName);
+    $params = array('project' => $project, 'zone' => $zone, 'size' => $size, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('resize', array($params), "GoogleGAL_Service_Replicapool_Pool");
+    return $this->call('insert', array($params), "GoogleGAL_Service_Replicapool_Operation");
   }
+
   /**
-   * Update the template used by the pool. (pools.updatetemplate)
+   * Retrieves the list of Instance Group Manager resources contained within the
+   * specified zone. (instanceGroupManagers.listInstanceGroupManagers)
    *
-   * @param string $projectName
-   * The project ID for this replica pool.
-   * @param string $zone
-   * The zone for this replica pool.
-   * @param string $poolName
-   * The name of the replica pool to update.
-   * @param GoogleGAL_Template $postBody
+   * @param string $project The Google Developers Console project name.
+   * @param string $zone The name of the zone in which the instance group manager
+   * resides.
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param string filter Optional. Filter expression for filtering listed
+   * resources.
+   * @opt_param string pageToken Optional. Tag returned by a previous list request
+   * truncated by maxResults. Used to continue a previous list request.
+   * @opt_param string maxResults Optional. Maximum count of results to be
+   * returned. Maximum value is 500 and default value is 500.
+   * @return GoogleGAL_Service_Replicapool_InstanceGroupManagerList
    */
-  public function updatetemplate($projectName, $zone, $poolName, GoogleGAL_Service_Replicapool_Template $postBody, $optParams = array())
+  public function listInstanceGroupManagers($project, $zone, $optParams = array())
   {
-    $params = array('projectName' => $projectName, 'zone' => $zone, 'poolName' => $poolName, 'postBody' => $postBody);
+    $params = array('project' => $project, 'zone' => $zone);
     $params = array_merge($params, $optParams);
-    return $this->call('updatetemplate', array($params));
+    return $this->call('list', array($params), "GoogleGAL_Service_Replicapool_InstanceGroupManagerList");
+  }
+
+  /**
+   * Recreates the specified instances. The instances are deleted, then recreated
+   * using the instance group manager's current instance template.
+   * (instanceGroupManagers.recreateInstances)
+   *
+   * @param string $project The Google Developers Console project name.
+   * @param string $zone The name of the zone in which the instance group manager
+   * resides.
+   * @param string $instanceGroupManager The name of the instance group manager.
+   * @param GoogleGAL_InstanceGroupManagersRecreateInstancesRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleGAL_Service_Replicapool_Operation
+   */
+  public function recreateInstances($project, $zone, $instanceGroupManager, GoogleGAL_Service_Replicapool_InstanceGroupManagersRecreateInstancesRequest $postBody, $optParams = array())
+  {
+    $params = array('project' => $project, 'zone' => $zone, 'instanceGroupManager' => $instanceGroupManager, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('recreateInstances', array($params), "GoogleGAL_Service_Replicapool_Operation");
+  }
+
+  /**
+   * Resizes the managed instance group up or down. If resized up, new instances
+   * are created using the current instance template. If resized down, instances
+   * are removed in the order outlined in Resizing a managed instance group.
+   * (instanceGroupManagers.resize)
+   *
+   * @param string $project The Google Developers Console project name.
+   * @param string $zone The name of the zone in which the instance group manager
+   * resides.
+   * @param string $instanceGroupManager The name of the instance group manager.
+   * @param int $size Number of instances that should exist in this Instance Group
+   * Manager.
+   * @param array $optParams Optional parameters.
+   * @return GoogleGAL_Service_Replicapool_Operation
+   */
+  public function resize($project, $zone, $instanceGroupManager, $size, $optParams = array())
+  {
+    $params = array('project' => $project, 'zone' => $zone, 'instanceGroupManager' => $instanceGroupManager, 'size' => $size);
+    $params = array_merge($params, $optParams);
+    return $this->call('resize', array($params), "GoogleGAL_Service_Replicapool_Operation");
+  }
+
+  /**
+   * Sets the instance template to use when creating new instances in this group.
+   * Existing instances are not affected.
+   * (instanceGroupManagers.setInstanceTemplate)
+   *
+   * @param string $project The Google Developers Console project name.
+   * @param string $zone The name of the zone in which the instance group manager
+   * resides.
+   * @param string $instanceGroupManager The name of the instance group manager.
+   * @param GoogleGAL_InstanceGroupManagersSetInstanceTemplateRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleGAL_Service_Replicapool_Operation
+   */
+  public function setInstanceTemplate($project, $zone, $instanceGroupManager, GoogleGAL_Service_Replicapool_InstanceGroupManagersSetInstanceTemplateRequest $postBody, $optParams = array())
+  {
+    $params = array('project' => $project, 'zone' => $zone, 'instanceGroupManager' => $instanceGroupManager, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('setInstanceTemplate', array($params), "GoogleGAL_Service_Replicapool_Operation");
+  }
+
+  /**
+   * Modifies the target pools to which all new instances in this group are
+   * assigned. Existing instances in the group are not affected.
+   * (instanceGroupManagers.setTargetPools)
+   *
+   * @param string $project The Google Developers Console project name.
+   * @param string $zone The name of the zone in which the instance group manager
+   * resides.
+   * @param string $instanceGroupManager The name of the instance group manager.
+   * @param GoogleGAL_InstanceGroupManagersSetTargetPoolsRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleGAL_Service_Replicapool_Operation
+   */
+  public function setTargetPools($project, $zone, $instanceGroupManager, GoogleGAL_Service_Replicapool_InstanceGroupManagersSetTargetPoolsRequest $postBody, $optParams = array())
+  {
+    $params = array('project' => $project, 'zone' => $zone, 'instanceGroupManager' => $instanceGroupManager, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('setTargetPools', array($params), "GoogleGAL_Service_Replicapool_Operation");
   }
 }
 
 /**
- * The "replicas" collection of methods.
+ * The "zoneOperations" collection of methods.
  * Typical usage is:
  *  <code>
  *   $replicapoolService = new GoogleGAL_Service_Replicapool(...);
- *   $replicas = $replicapoolService->replicas;
+ *   $zoneOperations = $replicapoolService->zoneOperations;
  *  </code>
  */
-class GoogleGAL_Service_Replicapool_Replicas_Resource extends GoogleGAL_Service_Resource
+class GoogleGAL_Service_Replicapool_ZoneOperations_Resource extends GoogleGAL_Service_Resource
 {
 
   /**
-   * Deletes a replica from the pool. (replicas.delete)
+   * Retrieves the specified zone-specific operation resource.
+   * (zoneOperations.get)
    *
-   * @param string $projectName
-   * The project ID for this request.
-   * @param string $zone
-   * The zone where the replica lives.
-   * @param string $poolName
-   * The replica pool name for this request.
-   * @param string $replicaName
-   * The name of the replica to delete.
-   * @param GoogleGAL_ReplicasDeleteRequest $postBody
+   * @param string $project Name of the project scoping this request.
+   * @param string $zone Name of the zone scoping this request.
+   * @param string $operation Name of the operation resource to return.
    * @param array $optParams Optional parameters.
-   * @return GoogleGAL_Service_Replicapool_Replica
+   * @return GoogleGAL_Service_Replicapool_Operation
    */
-  public function delete($projectName, $zone, $poolName, $replicaName, GoogleGAL_Service_Replicapool_ReplicasDeleteRequest $postBody, $optParams = array())
+  public function get($project, $zone, $operation, $optParams = array())
   {
-    $params = array('projectName' => $projectName, 'zone' => $zone, 'poolName' => $poolName, 'replicaName' => $replicaName, 'postBody' => $postBody);
+    $params = array('project' => $project, 'zone' => $zone, 'operation' => $operation);
     $params = array_merge($params, $optParams);
-    return $this->call('delete', array($params), "GoogleGAL_Service_Replicapool_Replica");
+    return $this->call('get', array($params), "GoogleGAL_Service_Replicapool_Operation");
   }
+
   /**
-   * Gets information about a specific replica. (replicas.get)
+   * Retrieves the list of operation resources contained within the specified
+   * zone. (zoneOperations.listZoneOperations)
    *
-   * @param string $projectName
-   * The name of project ID for this request.
-   * @param string $zone
-   * The zone where the replica lives.
-   * @param string $poolName
-   * The replica pool name for this request.
-   * @param string $replicaName
-   * The name of the replica for which you want to get more information.
-   * @param array $optParams Optional parameters.
-   * @return GoogleGAL_Service_Replicapool_Replica
-   */
-  public function get($projectName, $zone, $poolName, $replicaName, $optParams = array())
-  {
-    $params = array('projectName' => $projectName, 'zone' => $zone, 'poolName' => $poolName, 'replicaName' => $replicaName);
-    $params = array_merge($params, $optParams);
-    return $this->call('get', array($params), "GoogleGAL_Service_Replicapool_Replica");
-  }
-  /**
-   * Lists all replicas in a pool. (replicas.listReplicas)
-   *
-   * @param string $projectName
-   * The name of project ID for this request.
-   * @param string $zone
-   * The zone where the replica lives.
-   * @param string $poolName
-   * The replica pool name for this request.
+   * @param string $project Name of the project scoping this request.
+   * @param string $zone Name of the zone scoping this request.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string pageToken
-   * Specifies a nextPageToken returned by a previous list request. This token can be used to request
-    * the next page of results from a previous list request.
-   * @opt_param int maxResults
-   * Maximum count of results to be returned. Acceptable values are 0 to 100, inclusive. (Default:
-    * 50)
-   * @return GoogleGAL_Service_Replicapool_ReplicasListResponse
+   * @opt_param string filter Optional. Filter expression for filtering listed
+   * resources.
+   * @opt_param string pageToken Optional. Tag returned by a previous list request
+   * truncated by maxResults. Used to continue a previous list request.
+   * @opt_param string maxResults Optional. Maximum count of results to be
+   * returned. Maximum value is 500 and default value is 500.
+   * @return GoogleGAL_Service_Replicapool_OperationList
    */
-  public function listReplicas($projectName, $zone, $poolName, $optParams = array())
+  public function listZoneOperations($project, $zone, $optParams = array())
   {
-    $params = array('projectName' => $projectName, 'zone' => $zone, 'poolName' => $poolName);
+    $params = array('project' => $project, 'zone' => $zone);
     $params = array_merge($params, $optParams);
-    return $this->call('list', array($params), "GoogleGAL_Service_Replicapool_ReplicasListResponse");
-  }
-  /**
-   * Restarts a replica in a pool. (replicas.restart)
-   *
-   * @param string $projectName
-   * The name of project ID for this request.
-   * @param string $zone
-   * The zone where the replica lives.
-   * @param string $poolName
-   * The replica pool name for this request.
-   * @param string $replicaName
-   * The name of the replica to restart in the pool.
-   * @param array $optParams Optional parameters.
-   */
-  public function restart($projectName, $zone, $poolName, $replicaName, $optParams = array())
-  {
-    $params = array('projectName' => $projectName, 'zone' => $zone, 'poolName' => $poolName, 'replicaName' => $replicaName);
-    $params = array_merge($params, $optParams);
-    return $this->call('restart', array($params));
+    return $this->call('list', array($params), "GoogleGAL_Service_Replicapool_OperationList");
   }
 }
 
 
 
 
-class GoogleGAL_Service_Replicapool_AccessConfig extends GoogleGAL_Model
+class GoogleGAL_Service_Replicapool_InstanceGroupManager extends GoogleGAL_Collection
 {
-  public $name;
-  public $natIp;
-  public $type;
-
-  public function setName($name)
-  {
-    $this->name = $name;
-  }
-
-  public function getName()
-  {
-    return $this->name;
-  }
-
-  public function setNatIp($natIp)
-  {
-    $this->natIp = $natIp;
-  }
-
-  public function getNatIp()
-  {
-    return $this->natIp;
-  }
-
-  public function setType($type)
-  {
-    $this->type = $type;
-  }
-
-  public function getType()
-  {
-    return $this->type;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_Action extends GoogleGAL_Collection
-{
-  public $commands;
-  protected $envVariablesType = 'GoogleGAL_Service_Replicapool_EnvVariable';
-  protected $envVariablesDataType = 'array';
-  public $timeoutMilliSeconds;
-
-  public function setCommands($commands)
-  {
-    $this->commands = $commands;
-  }
-
-  public function getCommands()
-  {
-    return $this->commands;
-  }
-
-  public function setEnvVariables($envVariables)
-  {
-    $this->envVariables = $envVariables;
-  }
-
-  public function getEnvVariables()
-  {
-    return $this->envVariables;
-  }
-
-  public function setTimeoutMilliSeconds($timeoutMilliSeconds)
-  {
-    $this->timeoutMilliSeconds = $timeoutMilliSeconds;
-  }
-
-  public function getTimeoutMilliSeconds()
-  {
-    return $this->timeoutMilliSeconds;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_DiskAttachment extends GoogleGAL_Model
-{
-  public $deviceName;
-  public $index;
-
-  public function setDeviceName($deviceName)
-  {
-    $this->deviceName = $deviceName;
-  }
-
-  public function getDeviceName()
-  {
-    return $this->deviceName;
-  }
-
-  public function setIndex($index)
-  {
-    $this->index = $index;
-  }
-
-  public function getIndex()
-  {
-    return $this->index;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_EnvVariable extends GoogleGAL_Model
-{
-  public $hidden;
-  public $name;
-  public $value;
-
-  public function setHidden($hidden)
-  {
-    $this->hidden = $hidden;
-  }
-
-  public function getHidden()
-  {
-    return $this->hidden;
-  }
-
-  public function setName($name)
-  {
-    $this->name = $name;
-  }
-
-  public function getName()
-  {
-    return $this->name;
-  }
-
-  public function setValue($value)
-  {
-    $this->value = $value;
-  }
-
-  public function getValue()
-  {
-    return $this->value;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_ExistingDisk extends GoogleGAL_Model
-{
-  protected $attachmentType = 'GoogleGAL_Service_Replicapool_DiskAttachment';
-  protected $attachmentDataType = '';
-  public $source;
-
-  public function setAttachment(GoogleGAL_Service_Replicapool_DiskAttachment $attachment)
-  {
-    $this->attachment = $attachment;
-  }
-
-  public function getAttachment()
-  {
-    return $this->attachment;
-  }
-
-  public function setSource($source)
-  {
-    $this->source = $source;
-  }
-
-  public function getSource()
-  {
-    return $this->source;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_HealthCheck extends GoogleGAL_Model
-{
-  public $checkIntervalSec;
-  public $description;
-  public $healthyThreshold;
-  public $host;
-  public $name;
-  public $path;
-  public $port;
-  public $timeoutSec;
-  public $unhealthyThreshold;
-
-  public function setCheckIntervalSec($checkIntervalSec)
-  {
-    $this->checkIntervalSec = $checkIntervalSec;
-  }
-
-  public function getCheckIntervalSec()
-  {
-    return $this->checkIntervalSec;
-  }
-
-  public function setDescription($description)
-  {
-    $this->description = $description;
-  }
-
-  public function getDescription()
-  {
-    return $this->description;
-  }
-
-  public function setHealthyThreshold($healthyThreshold)
-  {
-    $this->healthyThreshold = $healthyThreshold;
-  }
-
-  public function getHealthyThreshold()
-  {
-    return $this->healthyThreshold;
-  }
-
-  public function setHost($host)
-  {
-    $this->host = $host;
-  }
-
-  public function getHost()
-  {
-    return $this->host;
-  }
-
-  public function setName($name)
-  {
-    $this->name = $name;
-  }
-
-  public function getName()
-  {
-    return $this->name;
-  }
-
-  public function setPath($path)
-  {
-    $this->path = $path;
-  }
-
-  public function getPath()
-  {
-    return $this->path;
-  }
-
-  public function setPort($port)
-  {
-    $this->port = $port;
-  }
-
-  public function getPort()
-  {
-    return $this->port;
-  }
-
-  public function setTimeoutSec($timeoutSec)
-  {
-    $this->timeoutSec = $timeoutSec;
-  }
-
-  public function getTimeoutSec()
-  {
-    return $this->timeoutSec;
-  }
-
-  public function setUnhealthyThreshold($unhealthyThreshold)
-  {
-    $this->unhealthyThreshold = $unhealthyThreshold;
-  }
-
-  public function getUnhealthyThreshold()
-  {
-    return $this->unhealthyThreshold;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_Label extends GoogleGAL_Model
-{
-  public $key;
-  public $value;
-
-  public function setKey($key)
-  {
-    $this->key = $key;
-  }
-
-  public function getKey()
-  {
-    return $this->key;
-  }
-
-  public function setValue($value)
-  {
-    $this->value = $value;
-  }
-
-  public function getValue()
-  {
-    return $this->value;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_Metadata extends GoogleGAL_Collection
-{
-  public $fingerPrint;
-  protected $itemsType = 'GoogleGAL_Service_Replicapool_MetadataItem';
-  protected $itemsDataType = 'array';
-
-  public function setFingerPrint($fingerPrint)
-  {
-    $this->fingerPrint = $fingerPrint;
-  }
-
-  public function getFingerPrint()
-  {
-    return $this->fingerPrint;
-  }
-
-  public function setItems($items)
-  {
-    $this->items = $items;
-  }
-
-  public function getItems()
-  {
-    return $this->items;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_MetadataItem extends GoogleGAL_Model
-{
-  public $key;
-  public $value;
-
-  public function setKey($key)
-  {
-    $this->key = $key;
-  }
-
-  public function getKey()
-  {
-    return $this->key;
-  }
-
-  public function setValue($value)
-  {
-    $this->value = $value;
-  }
-
-  public function getValue()
-  {
-    return $this->value;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_NetworkInterface extends GoogleGAL_Collection
-{
-  protected $accessConfigsType = 'GoogleGAL_Service_Replicapool_AccessConfig';
-  protected $accessConfigsDataType = 'array';
-  public $network;
-  public $networkIp;
-
-  public function setAccessConfigs($accessConfigs)
-  {
-    $this->accessConfigs = $accessConfigs;
-  }
-
-  public function getAccessConfigs()
-  {
-    return $this->accessConfigs;
-  }
-
-  public function setNetwork($network)
-  {
-    $this->network = $network;
-  }
-
-  public function getNetwork()
-  {
-    return $this->network;
-  }
-
-  public function setNetworkIp($networkIp)
-  {
-    $this->networkIp = $networkIp;
-  }
-
-  public function getNetworkIp()
-  {
-    return $this->networkIp;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_NewDisk extends GoogleGAL_Model
-{
-  protected $attachmentType = 'GoogleGAL_Service_Replicapool_DiskAttachment';
-  protected $attachmentDataType = '';
-  public $autoDelete;
-  public $boot;
-  protected $initializeParamsType = 'GoogleGAL_Service_Replicapool_NewDiskInitializeParams';
-  protected $initializeParamsDataType = '';
-
-  public function setAttachment(GoogleGAL_Service_Replicapool_DiskAttachment $attachment)
-  {
-    $this->attachment = $attachment;
-  }
-
-  public function getAttachment()
-  {
-    return $this->attachment;
-  }
-
-  public function setAutoDelete($autoDelete)
-  {
-    $this->autoDelete = $autoDelete;
-  }
-
-  public function getAutoDelete()
-  {
-    return $this->autoDelete;
-  }
-
-  public function setBoot($boot)
-  {
-    $this->boot = $boot;
-  }
-
-  public function getBoot()
-  {
-    return $this->boot;
-  }
-
-  public function setInitializeParams(GoogleGAL_Service_Replicapool_NewDiskInitializeParams $initializeParams)
-  {
-    $this->initializeParams = $initializeParams;
-  }
-
-  public function getInitializeParams()
-  {
-    return $this->initializeParams;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_NewDiskInitializeParams extends GoogleGAL_Model
-{
-  public $diskSizeGb;
-  public $sourceImage;
-
-  public function setDiskSizeGb($diskSizeGb)
-  {
-    $this->diskSizeGb = $diskSizeGb;
-  }
-
-  public function getDiskSizeGb()
-  {
-    return $this->diskSizeGb;
-  }
-
-  public function setSourceImage($sourceImage)
-  {
-    $this->sourceImage = $sourceImage;
-  }
-
-  public function getSourceImage()
-  {
-    return $this->sourceImage;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_Pool extends GoogleGAL_Collection
-{
-  public $autoRestart;
+  protected $collection_key = 'targetPools';
+  protected $internal_gapi_mappings = array(
+  );
   public $baseInstanceName;
-  public $currentNumReplicas;
+  public $creationTimestamp;
+  public $currentSize;
   public $description;
-  protected $healthChecksType = 'GoogleGAL_Service_Replicapool_HealthCheck';
-  protected $healthChecksDataType = 'array';
-  public $initialNumReplicas;
-  protected $labelsType = 'GoogleGAL_Service_Replicapool_Label';
-  protected $labelsDataType = 'array';
+  public $fingerprint;
+  public $group;
+  public $id;
+  public $instanceTemplate;
+  public $kind;
   public $name;
-  public $numReplicas;
-  public $resourceViews;
   public $selfLink;
-  public $targetPool;
   public $targetPools;
-  protected $templateType = 'GoogleGAL_Service_Replicapool_Template';
-  protected $templateDataType = '';
-  public $type;
+  public $targetSize;
 
-  public function setAutoRestart($autoRestart)
-  {
-    $this->autoRestart = $autoRestart;
-  }
-
-  public function getAutoRestart()
-  {
-    return $this->autoRestart;
-  }
 
   public function setBaseInstanceName($baseInstanceName)
   {
     $this->baseInstanceName = $baseInstanceName;
   }
-
   public function getBaseInstanceName()
   {
     return $this->baseInstanceName;
   }
-
-  public function setCurrentNumReplicas($currentNumReplicas)
+  public function setCreationTimestamp($creationTimestamp)
   {
-    $this->currentNumReplicas = $currentNumReplicas;
+    $this->creationTimestamp = $creationTimestamp;
   }
-
-  public function getCurrentNumReplicas()
+  public function getCreationTimestamp()
   {
-    return $this->currentNumReplicas;
+    return $this->creationTimestamp;
   }
-
+  public function setCurrentSize($currentSize)
+  {
+    $this->currentSize = $currentSize;
+  }
+  public function getCurrentSize()
+  {
+    return $this->currentSize;
+  }
   public function setDescription($description)
   {
     $this->description = $description;
   }
-
   public function getDescription()
   {
     return $this->description;
   }
-
-  public function setHealthChecks($healthChecks)
+  public function setFingerprint($fingerprint)
   {
-    $this->healthChecks = $healthChecks;
+    $this->fingerprint = $fingerprint;
   }
-
-  public function getHealthChecks()
+  public function getFingerprint()
   {
-    return $this->healthChecks;
+    return $this->fingerprint;
   }
-
-  public function setInitialNumReplicas($initialNumReplicas)
+  public function setGroup($group)
   {
-    $this->initialNumReplicas = $initialNumReplicas;
+    $this->group = $group;
   }
-
-  public function getInitialNumReplicas()
+  public function getGroup()
   {
-    return $this->initialNumReplicas;
+    return $this->group;
   }
-
-  public function setLabels($labels)
+  public function setId($id)
   {
-    $this->labels = $labels;
+    $this->id = $id;
   }
-
-  public function getLabels()
+  public function getId()
   {
-    return $this->labels;
+    return $this->id;
   }
-
+  public function setInstanceTemplate($instanceTemplate)
+  {
+    $this->instanceTemplate = $instanceTemplate;
+  }
+  public function getInstanceTemplate()
+  {
+    return $this->instanceTemplate;
+  }
+  public function setKind($kind)
+  {
+    $this->kind = $kind;
+  }
+  public function getKind()
+  {
+    return $this->kind;
+  }
   public function setName($name)
   {
     $this->name = $name;
   }
-
   public function getName()
   {
     return $this->name;
   }
-
-  public function setNumReplicas($numReplicas)
-  {
-    $this->numReplicas = $numReplicas;
-  }
-
-  public function getNumReplicas()
-  {
-    return $this->numReplicas;
-  }
-
-  public function setResourceViews($resourceViews)
-  {
-    $this->resourceViews = $resourceViews;
-  }
-
-  public function getResourceViews()
-  {
-    return $this->resourceViews;
-  }
-
   public function setSelfLink($selfLink)
   {
     $this->selfLink = $selfLink;
   }
-
   public function getSelfLink()
   {
     return $this->selfLink;
   }
-
-  public function setTargetPool($targetPool)
-  {
-    $this->targetPool = $targetPool;
-  }
-
-  public function getTargetPool()
-  {
-    return $this->targetPool;
-  }
-
   public function setTargetPools($targetPools)
   {
     $this->targetPools = $targetPools;
   }
-
   public function getTargetPools()
   {
     return $this->targetPools;
   }
-
-  public function setTemplate(GoogleGAL_Service_Replicapool_Template $template)
+  public function setTargetSize($targetSize)
   {
-    $this->template = $template;
+    $this->targetSize = $targetSize;
   }
-
-  public function getTemplate()
+  public function getTargetSize()
   {
-    return $this->template;
-  }
-
-  public function setType($type)
-  {
-    $this->type = $type;
-  }
-
-  public function getType()
-  {
-    return $this->type;
+    return $this->targetSize;
   }
 }
 
-class GoogleGAL_Service_Replicapool_PoolsDeleteRequest extends GoogleGAL_Collection
+class GoogleGAL_Service_Replicapool_InstanceGroupManagerList extends GoogleGAL_Collection
 {
-  public $abandonInstances;
-
-  public function setAbandonInstances($abandonInstances)
-  {
-    $this->abandonInstances = $abandonInstances;
-  }
-
-  public function getAbandonInstances()
-  {
-    return $this->abandonInstances;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_PoolsListResponse extends GoogleGAL_Collection
-{
+  protected $collection_key = 'items';
+  protected $internal_gapi_mappings = array(
+  );
+  public $id;
+  protected $itemsType = 'GoogleGAL_Service_Replicapool_InstanceGroupManager';
+  protected $itemsDataType = 'array';
+  public $kind;
   public $nextPageToken;
-  protected $resourcesType = 'GoogleGAL_Service_Replicapool_Pool';
-  protected $resourcesDataType = 'array';
-
-  public function setNextPageToken($nextPageToken)
-  {
-    $this->nextPageToken = $nextPageToken;
-  }
-
-  public function getNextPageToken()
-  {
-    return $this->nextPageToken;
-  }
-
-  public function setResources($resources)
-  {
-    $this->resources = $resources;
-  }
-
-  public function getResources()
-  {
-    return $this->resources;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_Replica extends GoogleGAL_Model
-{
-  public $name;
   public $selfLink;
-  protected $statusType = 'GoogleGAL_Service_Replicapool_ReplicaStatus';
-  protected $statusDataType = '';
 
-  public function setName($name)
+
+  public function setId($id)
   {
-    $this->name = $name;
+    $this->id = $id;
   }
-
-  public function getName()
+  public function getId()
   {
-    return $this->name;
+    return $this->id;
   }
-
-  public function setSelfLink($selfLink)
-  {
-    $this->selfLink = $selfLink;
-  }
-
-  public function getSelfLink()
-  {
-    return $this->selfLink;
-  }
-
-  public function setStatus(GoogleGAL_Service_Replicapool_ReplicaStatus $status)
-  {
-    $this->status = $status;
-  }
-
-  public function getStatus()
-  {
-    return $this->status;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_ReplicaStatus extends GoogleGAL_Model
-{
-  public $details;
-  public $state;
-  public $templateVersion;
-  public $vmLink;
-  public $vmStartTime;
-
-  public function setDetails($details)
-  {
-    $this->details = $details;
-  }
-
-  public function getDetails()
-  {
-    return $this->details;
-  }
-
-  public function setState($state)
-  {
-    $this->state = $state;
-  }
-
-  public function getState()
-  {
-    return $this->state;
-  }
-
-  public function setTemplateVersion($templateVersion)
-  {
-    $this->templateVersion = $templateVersion;
-  }
-
-  public function getTemplateVersion()
-  {
-    return $this->templateVersion;
-  }
-
-  public function setVmLink($vmLink)
-  {
-    $this->vmLink = $vmLink;
-  }
-
-  public function getVmLink()
-  {
-    return $this->vmLink;
-  }
-
-  public function setVmStartTime($vmStartTime)
-  {
-    $this->vmStartTime = $vmStartTime;
-  }
-
-  public function getVmStartTime()
-  {
-    return $this->vmStartTime;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_ReplicasDeleteRequest extends GoogleGAL_Model
-{
-  public $abandonInstance;
-
-  public function setAbandonInstance($abandonInstance)
-  {
-    $this->abandonInstance = $abandonInstance;
-  }
-
-  public function getAbandonInstance()
-  {
-    return $this->abandonInstance;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_ReplicasListResponse extends GoogleGAL_Collection
-{
-  public $nextPageToken;
-  protected $resourcesType = 'GoogleGAL_Service_Replicapool_Replica';
-  protected $resourcesDataType = 'array';
-
-  public function setNextPageToken($nextPageToken)
-  {
-    $this->nextPageToken = $nextPageToken;
-  }
-
-  public function getNextPageToken()
-  {
-    return $this->nextPageToken;
-  }
-
-  public function setResources($resources)
-  {
-    $this->resources = $resources;
-  }
-
-  public function getResources()
-  {
-    return $this->resources;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_ServiceAccount extends GoogleGAL_Collection
-{
-  public $email;
-  public $scopes;
-
-  public function setEmail($email)
-  {
-    $this->email = $email;
-  }
-
-  public function getEmail()
-  {
-    return $this->email;
-  }
-
-  public function setScopes($scopes)
-  {
-    $this->scopes = $scopes;
-  }
-
-  public function getScopes()
-  {
-    return $this->scopes;
-  }
-}
-
-class GoogleGAL_Service_Replicapool_Tag extends GoogleGAL_Collection
-{
-  public $fingerPrint;
-  public $items;
-
-  public function setFingerPrint($fingerPrint)
-  {
-    $this->fingerPrint = $fingerPrint;
-  }
-
-  public function getFingerPrint()
-  {
-    return $this->fingerPrint;
-  }
-
   public function setItems($items)
   {
     $this->items = $items;
   }
-
   public function getItems()
   {
     return $this->items;
   }
-}
-
-class GoogleGAL_Service_Replicapool_Template extends GoogleGAL_Collection
-{
-  protected $actionType = 'GoogleGAL_Service_Replicapool_Action';
-  protected $actionDataType = '';
-  protected $healthChecksType = 'GoogleGAL_Service_Replicapool_HealthCheck';
-  protected $healthChecksDataType = 'array';
-  public $version;
-  protected $vmParamsType = 'GoogleGAL_Service_Replicapool_VmParams';
-  protected $vmParamsDataType = '';
-
-  public function setAction(GoogleGAL_Service_Replicapool_Action $action)
+  public function setKind($kind)
   {
-    $this->action = $action;
+    $this->kind = $kind;
   }
-
-  public function getAction()
+  public function getKind()
   {
-    return $this->action;
+    return $this->kind;
   }
-
-  public function setHealthChecks($healthChecks)
+  public function setNextPageToken($nextPageToken)
   {
-    $this->healthChecks = $healthChecks;
+    $this->nextPageToken = $nextPageToken;
   }
-
-  public function getHealthChecks()
+  public function getNextPageToken()
   {
-    return $this->healthChecks;
+    return $this->nextPageToken;
   }
-
-  public function setVersion($version)
+  public function setSelfLink($selfLink)
   {
-    $this->version = $version;
+    $this->selfLink = $selfLink;
   }
-
-  public function getVersion()
+  public function getSelfLink()
   {
-    return $this->version;
-  }
-
-  public function setVmParams(GoogleGAL_Service_Replicapool_VmParams $vmParams)
-  {
-    $this->vmParams = $vmParams;
-  }
-
-  public function getVmParams()
-  {
-    return $this->vmParams;
+    return $this->selfLink;
   }
 }
 
-class GoogleGAL_Service_Replicapool_VmParams extends GoogleGAL_Collection
+class GoogleGAL_Service_Replicapool_InstanceGroupManagersAbandonInstancesRequest extends GoogleGAL_Collection
 {
-  public $baseInstanceName;
-  public $canIpForward;
-  public $description;
-  protected $disksToAttachType = 'GoogleGAL_Service_Replicapool_ExistingDisk';
-  protected $disksToAttachDataType = 'array';
-  protected $disksToCreateType = 'GoogleGAL_Service_Replicapool_NewDisk';
-  protected $disksToCreateDataType = 'array';
-  public $machineType;
-  protected $metadataType = 'GoogleGAL_Service_Replicapool_Metadata';
-  protected $metadataDataType = '';
-  protected $networkInterfacesType = 'GoogleGAL_Service_Replicapool_NetworkInterface';
-  protected $networkInterfacesDataType = 'array';
-  public $onHostMaintenance;
-  protected $serviceAccountsType = 'GoogleGAL_Service_Replicapool_ServiceAccount';
-  protected $serviceAccountsDataType = 'array';
-  protected $tagsType = 'GoogleGAL_Service_Replicapool_Tag';
-  protected $tagsDataType = '';
+  protected $collection_key = 'instances';
+  protected $internal_gapi_mappings = array(
+  );
+  public $instances;
 
-  public function setBaseInstanceName($baseInstanceName)
+
+  public function setInstances($instances)
   {
-    $this->baseInstanceName = $baseInstanceName;
+    $this->instances = $instances;
   }
-
-  public function getBaseInstanceName()
+  public function getInstances()
   {
-    return $this->baseInstanceName;
+    return $this->instances;
   }
+}
 
-  public function setCanIpForward($canIpForward)
+class GoogleGAL_Service_Replicapool_InstanceGroupManagersDeleteInstancesRequest extends GoogleGAL_Collection
+{
+  protected $collection_key = 'instances';
+  protected $internal_gapi_mappings = array(
+  );
+  public $instances;
+
+
+  public function setInstances($instances)
   {
-    $this->canIpForward = $canIpForward;
+    $this->instances = $instances;
   }
-
-  public function getCanIpForward()
+  public function getInstances()
   {
-    return $this->canIpForward;
+    return $this->instances;
   }
+}
 
-  public function setDescription($description)
+class GoogleGAL_Service_Replicapool_InstanceGroupManagersRecreateInstancesRequest extends GoogleGAL_Collection
+{
+  protected $collection_key = 'instances';
+  protected $internal_gapi_mappings = array(
+  );
+  public $instances;
+
+
+  public function setInstances($instances)
   {
-    $this->description = $description;
+    $this->instances = $instances;
   }
-
-  public function getDescription()
+  public function getInstances()
   {
-    return $this->description;
+    return $this->instances;
   }
+}
 
-  public function setDisksToAttach($disksToAttach)
+class GoogleGAL_Service_Replicapool_InstanceGroupManagersSetInstanceTemplateRequest extends GoogleGAL_Model
+{
+  protected $internal_gapi_mappings = array(
+  );
+  public $instanceTemplate;
+
+
+  public function setInstanceTemplate($instanceTemplate)
   {
-    $this->disksToAttach = $disksToAttach;
+    $this->instanceTemplate = $instanceTemplate;
   }
-
-  public function getDisksToAttach()
+  public function getInstanceTemplate()
   {
-    return $this->disksToAttach;
+    return $this->instanceTemplate;
   }
+}
 
-  public function setDisksToCreate($disksToCreate)
+class GoogleGAL_Service_Replicapool_InstanceGroupManagersSetTargetPoolsRequest extends GoogleGAL_Collection
+{
+  protected $collection_key = 'targetPools';
+  protected $internal_gapi_mappings = array(
+  );
+  public $fingerprint;
+  public $targetPools;
+
+
+  public function setFingerprint($fingerprint)
   {
-    $this->disksToCreate = $disksToCreate;
+    $this->fingerprint = $fingerprint;
   }
-
-  public function getDisksToCreate()
+  public function getFingerprint()
   {
-    return $this->disksToCreate;
+    return $this->fingerprint;
   }
-
-  public function setMachineType($machineType)
+  public function setTargetPools($targetPools)
   {
-    $this->machineType = $machineType;
+    $this->targetPools = $targetPools;
   }
-
-  public function getMachineType()
+  public function getTargetPools()
   {
-    return $this->machineType;
+    return $this->targetPools;
   }
+}
 
-  public function setMetadata(GoogleGAL_Service_Replicapool_Metadata $metadata)
+class GoogleGAL_Service_Replicapool_Operation extends GoogleGAL_Collection
+{
+  protected $collection_key = 'warnings';
+  protected $internal_gapi_mappings = array(
+  );
+  public $clientOperationId;
+  public $creationTimestamp;
+  public $endTime;
+  protected $errorType = 'GoogleGAL_Service_Replicapool_OperationError';
+  protected $errorDataType = '';
+  public $httpErrorMessage;
+  public $httpErrorStatusCode;
+  public $id;
+  public $insertTime;
+  public $kind;
+  public $name;
+  public $operationType;
+  public $progress;
+  public $region;
+  public $selfLink;
+  public $startTime;
+  public $status;
+  public $statusMessage;
+  public $targetId;
+  public $targetLink;
+  public $user;
+  protected $warningsType = 'GoogleGAL_Service_Replicapool_OperationWarnings';
+  protected $warningsDataType = 'array';
+  public $zone;
+
+
+  public function setClientOperationId($clientOperationId)
   {
-    $this->metadata = $metadata;
+    $this->clientOperationId = $clientOperationId;
   }
-
-  public function getMetadata()
+  public function getClientOperationId()
   {
-    return $this->metadata;
+    return $this->clientOperationId;
   }
-
-  public function setNetworkInterfaces($networkInterfaces)
+  public function setCreationTimestamp($creationTimestamp)
   {
-    $this->networkInterfaces = $networkInterfaces;
+    $this->creationTimestamp = $creationTimestamp;
   }
-
-  public function getNetworkInterfaces()
+  public function getCreationTimestamp()
   {
-    return $this->networkInterfaces;
+    return $this->creationTimestamp;
   }
-
-  public function setOnHostMaintenance($onHostMaintenance)
+  public function setEndTime($endTime)
   {
-    $this->onHostMaintenance = $onHostMaintenance;
+    $this->endTime = $endTime;
   }
-
-  public function getOnHostMaintenance()
+  public function getEndTime()
   {
-    return $this->onHostMaintenance;
+    return $this->endTime;
   }
-
-  public function setServiceAccounts($serviceAccounts)
+  public function setError(GoogleGAL_Service_Replicapool_OperationError $error)
   {
-    $this->serviceAccounts = $serviceAccounts;
+    $this->error = $error;
   }
-
-  public function getServiceAccounts()
+  public function getError()
   {
-    return $this->serviceAccounts;
+    return $this->error;
   }
-
-  public function setTags(GoogleGAL_Service_Replicapool_Tag $tags)
+  public function setHttpErrorMessage($httpErrorMessage)
   {
-    $this->tags = $tags;
+    $this->httpErrorMessage = $httpErrorMessage;
   }
-
-  public function getTags()
+  public function getHttpErrorMessage()
   {
-    return $this->tags;
+    return $this->httpErrorMessage;
+  }
+  public function setHttpErrorStatusCode($httpErrorStatusCode)
+  {
+    $this->httpErrorStatusCode = $httpErrorStatusCode;
+  }
+  public function getHttpErrorStatusCode()
+  {
+    return $this->httpErrorStatusCode;
+  }
+  public function setId($id)
+  {
+    $this->id = $id;
+  }
+  public function getId()
+  {
+    return $this->id;
+  }
+  public function setInsertTime($insertTime)
+  {
+    $this->insertTime = $insertTime;
+  }
+  public function getInsertTime()
+  {
+    return $this->insertTime;
+  }
+  public function setKind($kind)
+  {
+    $this->kind = $kind;
+  }
+  public function getKind()
+  {
+    return $this->kind;
+  }
+  public function setName($name)
+  {
+    $this->name = $name;
+  }
+  public function getName()
+  {
+    return $this->name;
+  }
+  public function setOperationType($operationType)
+  {
+    $this->operationType = $operationType;
+  }
+  public function getOperationType()
+  {
+    return $this->operationType;
+  }
+  public function setProgress($progress)
+  {
+    $this->progress = $progress;
+  }
+  public function getProgress()
+  {
+    return $this->progress;
+  }
+  public function setRegion($region)
+  {
+    $this->region = $region;
+  }
+  public function getRegion()
+  {
+    return $this->region;
+  }
+  public function setSelfLink($selfLink)
+  {
+    $this->selfLink = $selfLink;
+  }
+  public function getSelfLink()
+  {
+    return $this->selfLink;
+  }
+  public function setStartTime($startTime)
+  {
+    $this->startTime = $startTime;
+  }
+  public function getStartTime()
+  {
+    return $this->startTime;
+  }
+  public function setStatus($status)
+  {
+    $this->status = $status;
+  }
+  public function getStatus()
+  {
+    return $this->status;
+  }
+  public function setStatusMessage($statusMessage)
+  {
+    $this->statusMessage = $statusMessage;
+  }
+  public function getStatusMessage()
+  {
+    return $this->statusMessage;
+  }
+  public function setTargetId($targetId)
+  {
+    $this->targetId = $targetId;
+  }
+  public function getTargetId()
+  {
+    return $this->targetId;
+  }
+  public function setTargetLink($targetLink)
+  {
+    $this->targetLink = $targetLink;
+  }
+  public function getTargetLink()
+  {
+    return $this->targetLink;
+  }
+  public function setUser($user)
+  {
+    $this->user = $user;
+  }
+  public function getUser()
+  {
+    return $this->user;
+  }
+  public function setWarnings($warnings)
+  {
+    $this->warnings = $warnings;
+  }
+  public function getWarnings()
+  {
+    return $this->warnings;
+  }
+  public function setZone($zone)
+  {
+    $this->zone = $zone;
+  }
+  public function getZone()
+  {
+    return $this->zone;
+  }
+}
+
+class GoogleGAL_Service_Replicapool_OperationError extends GoogleGAL_Collection
+{
+  protected $collection_key = 'errors';
+  protected $internal_gapi_mappings = array(
+  );
+  protected $errorsType = 'GoogleGAL_Service_Replicapool_OperationErrorErrors';
+  protected $errorsDataType = 'array';
+
+
+  public function setErrors($errors)
+  {
+    $this->errors = $errors;
+  }
+  public function getErrors()
+  {
+    return $this->errors;
+  }
+}
+
+class GoogleGAL_Service_Replicapool_OperationErrorErrors extends GoogleGAL_Model
+{
+  protected $internal_gapi_mappings = array(
+  );
+  public $code;
+  public $location;
+  public $message;
+
+
+  public function setCode($code)
+  {
+    $this->code = $code;
+  }
+  public function getCode()
+  {
+    return $this->code;
+  }
+  public function setLocation($location)
+  {
+    $this->location = $location;
+  }
+  public function getLocation()
+  {
+    return $this->location;
+  }
+  public function setMessage($message)
+  {
+    $this->message = $message;
+  }
+  public function getMessage()
+  {
+    return $this->message;
+  }
+}
+
+class GoogleGAL_Service_Replicapool_OperationList extends GoogleGAL_Collection
+{
+  protected $collection_key = 'items';
+  protected $internal_gapi_mappings = array(
+  );
+  public $id;
+  protected $itemsType = 'GoogleGAL_Service_Replicapool_Operation';
+  protected $itemsDataType = 'array';
+  public $kind;
+  public $nextPageToken;
+  public $selfLink;
+
+
+  public function setId($id)
+  {
+    $this->id = $id;
+  }
+  public function getId()
+  {
+    return $this->id;
+  }
+  public function setItems($items)
+  {
+    $this->items = $items;
+  }
+  public function getItems()
+  {
+    return $this->items;
+  }
+  public function setKind($kind)
+  {
+    $this->kind = $kind;
+  }
+  public function getKind()
+  {
+    return $this->kind;
+  }
+  public function setNextPageToken($nextPageToken)
+  {
+    $this->nextPageToken = $nextPageToken;
+  }
+  public function getNextPageToken()
+  {
+    return $this->nextPageToken;
+  }
+  public function setSelfLink($selfLink)
+  {
+    $this->selfLink = $selfLink;
+  }
+  public function getSelfLink()
+  {
+    return $this->selfLink;
+  }
+}
+
+class GoogleGAL_Service_Replicapool_OperationWarnings extends GoogleGAL_Collection
+{
+  protected $collection_key = 'data';
+  protected $internal_gapi_mappings = array(
+  );
+  public $code;
+  protected $dataType = 'GoogleGAL_Service_Replicapool_OperationWarningsData';
+  protected $dataDataType = 'array';
+  public $message;
+
+
+  public function setCode($code)
+  {
+    $this->code = $code;
+  }
+  public function getCode()
+  {
+    return $this->code;
+  }
+  public function setData($data)
+  {
+    $this->data = $data;
+  }
+  public function getData()
+  {
+    return $this->data;
+  }
+  public function setMessage($message)
+  {
+    $this->message = $message;
+  }
+  public function getMessage()
+  {
+    return $this->message;
+  }
+}
+
+class GoogleGAL_Service_Replicapool_OperationWarningsData extends GoogleGAL_Model
+{
+  protected $internal_gapi_mappings = array(
+  );
+  public $key;
+  public $value;
+
+
+  public function setKey($key)
+  {
+    $this->key = $key;
+  }
+  public function getKey()
+  {
+    return $this->key;
+  }
+  public function setValue($value)
+  {
+    $this->value = $value;
+  }
+  public function getValue()
+  {
+    return $this->value;
   }
 }
