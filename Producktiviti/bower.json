@@ -1,0 +1,27 @@
+{
+  "name": "Producktiviti",
+  "version": "0.0.1",
+  "authors": [
+    "acosf <acosf2014.pdflint@gmail.com>"
+  ],
+  "description": "Productivity Suite",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "ArcherSys",
+    "Producktiviti",
+    "Productivity",
+    "Topeka",
+    "Polymer"
+  ],
+  "license": "MIT",
+  "homepage": "archersys.github.io",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
